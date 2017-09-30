@@ -1,0 +1,212 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{44159154-E798-413B-92D6-9784EA434CD9}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Data_Structrures_and_Algorithm_Analysis_CS</RootNamespace>
+    <AssemblyName>Data Structrures and Algorithm Analysis CS</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Basic Data Structures\LinkedList.cs" />
+    <Compile Include="Basic Data Structures\Stack.cs" />
+    <Compile Include="Basic Data Structures\StdRandom.cs" />
+    <Compile Include="Basic Data Structures\UnionFind.cs" />
+    <Compile Include="Basic Data Structures\UnitTest.cs" />
+    <Compile Include="Graph\Digraph\BreadthFirstDirectedPaths.cs" />
+    <Compile Include="Graph\Digraph\DepthFirstDirectedPaths.cs" />
+    <Compile Include="Graph\Digraph\DepthFirstOrder.cs" />
+    <Compile Include="Graph\Digraph\Digraph.cs" />
+    <Compile Include="Graph\Digraph\DigraphDFS.cs" />
+    <Compile Include="Graph\Digraph\DigraphGenerator.cs" />
+    <Compile Include="Graph\Digraph\DirectedCycle.cs" />
+    <Compile Include="Graph\Digraph\DirectedEulerianCycle.cs" />
+    <Compile Include="Graph\Digraph\DirectedEulerianPath.cs" />
+    <Compile Include="Graph\Digraph\GabowSCC.cs" />
+    <Compile Include="Graph\Digraph\StronglyConnectedComponentsBase.cs" />
+    <Compile Include="Graph\Digraph\SymbolDigraph.cs" />
+    <Compile Include="Graph\Digraph\TarjanSCC.cs" />
+    <Compile Include="Graph\Digraph\Topological.cs" />
+    <Compile Include="Graph\Digraph\TransitiveClosure.cs" />
+    <Compile Include="Graph\EdgeWeightedDigraph\AcyclicLongestPaths.cs" />
+    <Compile Include="Graph\EdgeWeightedDigraph\AcyclicShortestPaths.cs" />
+    <Compile Include="Graph\EdgeWeightedDigraph\Arbitrage.cs" />
+    <Compile Include="Graph\EdgeWeightedDigraph\BellmanFordShortestPaths.cs" />
+    <Compile Include="Graph\EdgeWeightedDigraph\CriticalPathMethod.cs" />
+    <Compile Include="Graph\EdgeWeightedDigraph\DijkstraAllPairsSP.cs" />
+    <Compile Include="Graph\EdgeWeightedDigraph\DijkstraShortestPaths.cs" />
+    <Compile Include="Graph\EdgeWeightedDigraph\DijkstraUndirectedShortestPaths.cs" />
+    <Compile Include="Graph\EdgeWeightedDigraph\DirectedEdge.cs" />
+    <Compile Include="Graph\EdgeWeightedDigraph\EdgeWeightedDigraph.cs" />
+    <Compile Include="Graph\EdgeWeightedDigraph\EdgeWeightedDirectedCycle.cs" />
+    <Compile Include="Graph\EdgeWeightedDigraph\EdgeWeightedPathsBase.cs" />
+    <Compile Include="Graph\EdgeWeightedDigraph\ShortestPathBase.cs" />
+    <Compile Include="Graph\EdgeWeightedGraph\BoruvkaMST.cs" />
+    <Compile Include="Graph\EdgeWeightedGraph\Edge.cs" />
+    <Compile Include="Graph\EdgeWeightedGraph\EdgeWeightedGraph.cs" />
+    <Compile Include="Graph\EdgeWeightedGraph\KruskalMST.cs" />
+    <Compile Include="Graph\EdgeWeightedGraph\LazyPrimMST.cs" />
+    <Compile Include="Graph\EdgeWeightedGraph\MinSpanningTreeBase.cs" />
+    <Compile Include="Graph\EdgeWeightedGraph\PrimMST.cs" />
+    <Compile Include="Graph\Graph\Bipartite.cs" />
+    <Compile Include="Graph\Graph\BreadthFirstPaths.cs" />
+    <Compile Include="Graph\Graph\ConnectedComponents.cs" />
+    <Compile Include="Graph\Graph\Cycle.cs" />
+    <Compile Include="Graph\Graph\DepthFirstPaths.cs" />
+    <Compile Include="Graph\Graph\DepthFirstSearch.cs" />
+    <Compile Include="Graph\Graph\EulerianCycle.cs" />
+    <Compile Include="Graph\Graph\EulerianEdge.cs" />
+    <Compile Include="Graph\Graph\EulerianPath.cs" />
+    <Compile Include="Graph\Graph\Graph.cs" />
+    <Compile Include="Graph\Graph\GraphGenerator.cs" />
+    <Compile Include="Graph\Graph\GraphPathBase.cs" />
+    <Compile Include="Graph\Graph\GraphSearchBase.cs" />
+    <Compile Include="Graph\Graph\SymbolGraph.cs" />
+    <Compile Include="Graph\UnitTest.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Basic Data Structures\Queue.cs" />
+    <Compile Include="Search\BinarySearchTree.cs" />
+    <Compile Include="Search\FrequencyCounter.cs" />
+    <Compile Include="Search\TreeSet.cs" />
+    <Compile Include="Search\UnitTest.cs" />
+    <Compile Include="Search\IOrderedSymbolTable.cs" />
+    <Compile Include="Search\BinarySearchTreeBase.cs" />
+    <Compile Include="Search\LinearProbingHashTable.cs" />
+    <Compile Include="Search\RedBlackTree.cs" />
+    <Compile Include="Search\SeparateChainingHashTable.cs" />
+    <Compile Include="Search\SequentialSearch.cs" />
+    <Compile Include="Sort\IndexMaxPQ.cs" />
+    <Compile Include="Sort\IndexMinPQ.cs" />
+    <Compile Include="Sort\IndexPriorityQueueBase.cs" />
+    <Compile Include="Sort\MinPriorityQueue.cs" />
+    <Compile Include="Sort\PriorityQueueBase.cs" />
+    <Compile Include="Sort\Selection.cs" />
+    <Compile Include="Sort\HeapSort.cs" />
+    <Compile Include="Sort\Insertion.cs" />
+    <Compile Include="Sort\MaxPriorityQueue.cs" />
+    <Compile Include="Sort\Merge.cs" />
+    <Compile Include="Sort\Quick.cs" />
+    <Compile Include="Sort\Shell.cs" />
+    <Compile Include="Sort\SortBase.cs" />
+    <Compile Include="Search\ISymbolTable.cs" />
+    <Compile Include="Sort\UnitTest.cs" />
+    <Compile Include="String\BinaryStandardInput.cs" />
+    <Compile Include="String\BinaryStandardOutput.cs" />
+    <Compile Include="String\BoyerMoore.cs" />
+    <Compile Include="String\GREP.cs" />
+    <Compile Include="String\Huffman.cs" />
+    <Compile Include="String\KMP.cs" />
+    <Compile Include="String\LeastSignificantDigit.cs" />
+    <Compile Include="String\MostSignificantDigit.cs" />
+    <Compile Include="String\NFA.cs" />
+    <Compile Include="String\Quick3String.cs" />
+    <Compile Include="String\StringSearchBase.cs" />
+    <Compile Include="String\StringSortBase.cs" />
+    <Compile Include="String\TernarySearchTrie.cs" />
+    <Compile Include="String\TrieSet.cs" />
+    <Compile Include="String\TrieSymbolTable.cs" />
+    <Compile Include="String\UnitTest.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Content Include="Test data\jobs.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Test data\jobsPC.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Test data\lsd.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Test data\msdTest.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Test data\rates.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Test data\routes.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Test data\tinyCG.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Test data\tinyDAG.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Test data\tinyDG.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Test data\tinyEWD.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Test data\tinyEWDAG.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Test data\tinyEWDn.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Test data\tinyEWG.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Test data\tinyG.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Test data\tinyL.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Test data\tinyTale.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Test data\trieTestFile.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
