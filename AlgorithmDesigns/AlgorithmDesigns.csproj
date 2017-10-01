@@ -46,7 +46,7 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TopK.cs" />
-    <Compile Include="TopKTestOption.cs" />
+    <Compile Include="TestOption.cs" />
     <Compile Include="UnitTest.cs" />
   </ItemGroup>
   <ItemGroup>

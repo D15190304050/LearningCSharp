@@ -11,12 +11,9 @@ namespace AlgorithmDesigns
         public static int Main(string[] args)
         {
             // Test your algorithm here.
-            int[] data = new int[100];
-            for (int i = 0; i < data.Length; i++)
-                data[i] = i;
-            PersonalDataStructuresAndAlgorithm.BasicDataStructures.StdRandom.Shuffle(data);
+            //UnitTest.TopKUnitTest();
 
-            UnitTest.TopKUnitTest(TopKTestOption.SepcifiedArray, data, 10);
+            UnitTest.NumberOfInversionsUnitTest();
 
             // Keep the console window open in debug mode.
             Console.WriteLine("Press any key to continue...");

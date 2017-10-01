@@ -21,7 +21,7 @@ namespace AlgorithmDesigns
         public static int MergeBasedCount<T>(T[] array) where T : IComparable<T>
         {
             int count = 0;
-            MergeSort(array, new T[array.Length], 0, array.Length, ref count);
+            MergeSort(array, new T[array.Length], 0, array.Length - 1, ref count);
             return count;
         }
 
@@ -35,13 +35,20 @@ namespace AlgorithmDesigns
         /// <param name="high">The upper limit of this merge operation.</param>
         private static void MergeSort<T>(T[] array, T[] auxiliary, int low, int high, ref int count) where T : IComparable<T>
         {
+            // Returns if there is 1 or 0 element in the array.
             if (high <= low)
                 return;
             
+            // Get the middle index of the range to merge.
             int middle = (low + high) / 2;
 
+            // Merge sort the left half.
             MergeSort(array, auxiliary, low, middle, ref count);
+
+            // Merge sort the right half.
             MergeSort(array, auxiliary, middle + 1, high, ref count);
+
+            // Merge results and update the counter.
             count += MergeArray(array, auxiliary, low, middle, high);
         }
 
@@ -64,21 +71,21 @@ namespace AlgorithmDesigns
             // Copy original array to auxiliary array.
             for (int i = low; i <= high; i++)
                 auxiliary[i] = array[i];
-
-            // Merge back to array.
             
             // Scanner of sub-array[low ... middle].
             int left = low;
 
             // Scanner of sub-array[middle+1 ... high].
             int right = middle + 1;
+
+            // Merge back to array.
             for (int i = low; i <= high; i++)
             {
                 if (left > middle)
                     array[i] = auxiliary[right++];
                 else if (right > high)
                     array[i] = auxiliary[left++];
-                else if (Less(auxiliary[left], auxiliary[right]))
+                else if (Less(auxiliary[right], auxiliary[left]))
                 {
                     count += middle - left + 1;
                     array[i] = auxiliary[right++];
