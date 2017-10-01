@@ -8,7 +8,7 @@ using PersonalDataStructuresAndAlgorithm.Sort;
 namespace AlgorithmDesigns
 {
     /// <summary>
-    /// The TopK class represents a static method set that provide several solutions to deal with top-k problems.
+    /// The TopK class represents a static method set that provide several solutions to deal with the top-k problems.
     /// </summary>
     public static class TopK
     {
@@ -39,7 +39,7 @@ namespace AlgorithmDesigns
         /// <summary>
         /// Solves the top-k problem by sorting the data.
         /// </summary>
-        /// <typeparam name="T">T is a generic Type that implements the IComparable&lt;T> interface.</typeparam>
+        /// <typeparam name="T">T is a generic type that implements the IComparable&lt;T> interface.</typeparam>
         /// <param name="data">The array that contains the candicate data.</param>
         /// <param name="k">The number of element to extract from cadicate data.</param>
         /// <returns>A array that contains top-k element where k is specified by the caller.</returns>
@@ -63,7 +63,7 @@ namespace AlgorithmDesigns
         /// <summary>
         /// Solves the top-k problem by using a min priority queue.
         /// </summary>
-        /// <typeparam name="T">T is a generic Type that implements the IComparable&lt;T> interface.</typeparam>
+        /// <typeparam name="T">T is a generic type that implements the IComparable&lt;T> interface.</typeparam>
         /// <param name="data">The array that contains the candicate data.</param>
         /// <param name="k">The number of element to extract from cadicate data.</param>
         /// <returns>A array that contains top-k element where k is specified by the caller.</returns>
@@ -119,7 +119,7 @@ namespace AlgorithmDesigns
         /// <summary>
         /// Sloves the top-k problem by partitioning the data.
         /// </summary>
-        /// <typeparam name="T">T is a generic Type that implements the IComparable&lt;T> interface.</typeparam>
+        /// <typeparam name="T">T is a generic type that implements the IComparable&lt;T> interface.</typeparam>
         /// <param name="data">The array that contains the candicate data.</param>
         /// <param name="k">The number of element to extract from cadicate data.</param>
         /// <returns>A array that contains top-k element where k is specified by the caller.</returns>
@@ -170,7 +170,7 @@ namespace AlgorithmDesigns
         /// Partion the sub-array array[low .. high] so that array[low .. j-1] &lt;= array[j] &lt;= array[j+1 .. high]
         /// and return the index j, which is the correct index of the partitioning item.
         /// </summary>
-        /// <typeparam name="T">T is a generic Type that implements the IComparable&lt;T> interface.</typeparam>
+        /// <typeparam name="T">T is a generic type that implements the IComparable&lt;T> interface.</typeparam>
         /// <param name="array">The array to partition.</param>
         /// <param name="low">The min index of the sub-array.</param>
         /// <param name="high">The max index of the sub-array.</param>

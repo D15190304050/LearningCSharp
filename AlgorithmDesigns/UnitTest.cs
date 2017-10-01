@@ -64,5 +64,10 @@ namespace AlgorithmDesigns
                 Console.WriteLine(i);
             Console.WriteLine();
         }
+
+        public static void NumberOfInversionsUnitTest()
+        {
+
+        }
     }
 }
