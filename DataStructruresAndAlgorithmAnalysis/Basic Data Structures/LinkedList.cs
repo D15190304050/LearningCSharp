@@ -88,9 +88,8 @@ namespace PersonalDataStructuresAndAlgorithm
             {
                 Node tempFirst = new Node(data);
 
-
                 // If the linked list is empty, then the head and end point to the same node.
-                // Else, modify the node reference.
+                // Else, change the node reference.
                 if (Size == 0)
                 {
                     head = tempFirst;
