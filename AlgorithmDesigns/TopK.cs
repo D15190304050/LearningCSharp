@@ -125,6 +125,7 @@ namespace AlgorithmDesigns
         /// <returns>A array that contains top-k element where k is specified by the caller.</returns>
         public static T[] PartitionBasedSelection<T>(T[] data, int k) where T : IComparable<T>
         {
+            // Check length before processing.
             int length = data.Length;
             LengthCheck(length, k);
 
@@ -187,14 +188,14 @@ namespace AlgorithmDesigns
             // The partition procedure.
             for (; ; )
             {
-                // Find item on low to swap.
+                // Find item on left to swap.
                 while (Less(array[++left], pItem))
                 {
                     if (left == high)
                         break;
                 }
 
-                // Find item on high to swap.
+                // Find item on right to swap.
                 while (Less(pItem, array[--right]))
                 {
                     if (low == right)

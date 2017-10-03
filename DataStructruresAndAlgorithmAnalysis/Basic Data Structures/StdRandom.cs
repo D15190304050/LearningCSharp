@@ -61,8 +61,8 @@ namespace PersonalDataStructuresAndAlgorithm.BasicDataStructures
         /// <summary>
         /// Returns a random integer number uniformly in [0,n).
         /// </summary>
-        /// <param name="n">Number of possibile numebrs</param>
-        /// <returns>A random integer numebr uniformly in [0,n)</returns>
+        /// <param name="n">Number of possibile numebrs.</param>
+        /// <returns>A random integer numebr uniformly in [0,n).</returns>
         public static int Uniform(int n) { return random.Next(n); }
 
         /// <summary>
@@ -295,6 +295,8 @@ namespace PersonalDataStructuresAndAlgorithm.BasicDataStructures
             {
                 // Between i and n-1.
                 int indexToChange = i + Uniform(length - i);
+
+                // Swap them.
                 T temp = a[i];
                 a[i] = a[indexToChange];
                 a[indexToChange] = temp;
@@ -319,6 +321,8 @@ namespace PersonalDataStructuresAndAlgorithm.BasicDataStructures
             {
                 // Between i and high
                 int indexToChange = i + Uniform(high - i);
+
+                // Swap them.
                 T temp = a[i];
                 a[i] = a[indexToChange];
                 a[indexToChange] = temp;
