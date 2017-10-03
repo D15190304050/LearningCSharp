@@ -13,7 +13,7 @@ namespace AlgorithmDesigns
     public static class NumberOfInversions
     {
         /// <summary>
-        /// Solves the number of inversions problem by using merge sort.
+        /// Solves the number of inversions problem using merge sort.
         /// </summary>
         /// <typeparam name="T">T is a generic type that implements the IComparable&lt;T> interface.</typeparam>
         /// <param name="array">A generic array.</param>
@@ -33,6 +33,7 @@ namespace AlgorithmDesigns
         /// <param name="auxiliary">A auxiliary array.</param>
         /// <param name="low">The lower limit of this merge operation.</param>
         /// <param name="high">The upper limit of this merge operation.</param>
+        /// <param name="count">The counter that computes the number of inversions.</param>
         private static void MergeSort<T>(T[] array, T[] auxiliary, int low, int high, ref int count) where T : IComparable<T>
         {
             // Returns if there is 1 or 0 element in the array.
@@ -57,11 +58,10 @@ namespace AlgorithmDesigns
         /// </summary>
         /// <typeparam name="T">T is a generic type that implements the IComparable&lt;T> interface.</typeparam>
         /// <param name="array">A generic array.</param>
-        /// <param name="auxiliary">A auxiliary array.</param>
+        /// <param name="auxiliary">An auxiliary array.</param>
         /// <param name="low">The lower limit of this merge operation.</param>
         /// <param name="middle">The middle index of this merge operation.</param>
         /// <param name="high">The upper limit of this merge operation.</param>
-        /// <param name="count">The counter that computes the number of inversions.</param>
         /// <returns>The number of inversions in sub-array[low ... high].</returns>
         private static int MergeArray<T>(T[] array, T[] auxiliary, int low, int middle, int high) where T : IComparable<T>
         {
