@@ -40,30 +40,30 @@ namespace AlgorithmDesigns
             // The array that contains the deep copy of the sourceData.
             int[] data = new int[length];
 
-            // Test the SortBasedSelection() method.
+            // Test the SortBasedExtraction() method.
             // Make a deep copy of the source data because the sort operation will change the array.
-            Console.WriteLine("Test for the SortBasedSelection() method.");
+            Console.WriteLine("Test for the SortBasedExtraction() method.");
             for (int i = 0; i < length; i++)
                 data[i] = sourceData[i];
-            result = TopK.SortBasedSelection(data, k);
+            result = TopK.SortBasedExtraction(data, k);
             foreach (int i in result)
                 Console.WriteLine(i);
             Console.WriteLine();
 
-            // Test the MinPriorityQueueBasedSelection() method.
+            // Test the MinPriorityQueueBasedExtraction() method.
             // This method will not change the original array, so there is no need for a deep copy.
-            Console.WriteLine("Test for the MinPriorityQueueBasedSelection() method.");
-            result = TopK.MinPriorityQueueBasedSelection(sourceData, k);
+            Console.WriteLine("Test for the MinPriorityQueueBasedExtraction() method.");
+            result = TopK.MinPriorityQueueBasedExtraction(sourceData, k);
             foreach (int i in result)
                 Console.WriteLine(i);
             Console.WriteLine();
 
-            // Test the PartitionBasedSelection() method.
+            // Test the PartitionBasedExtraction() method.
             // Make a deep copy of the source data because the sort operation will change the array.
-            Console.WriteLine("Test for the SortBasedSelection() method.");
+            Console.WriteLine("Test for the SortBasedExtraction() method.");
             for (int i = 0; i < length; i++)
                 data[i] = sourceData[i];
-            result = TopK.PartitionBasedSelection(data, k);
+            result = TopK.PartitionBasedExtraction(data, k);
             foreach (int i in result)
                 Console.WriteLine(i);
             Console.WriteLine();

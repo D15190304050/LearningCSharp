@@ -11,7 +11,7 @@ namespace AlgorithmDesigns
         public static int Main(string[] args)
         {
             // Test your algorithm here.
-            //UnitTest.TopKUnitTest();
+            UnitTest.TopKUnitTest();
 
             UnitTest.NumberOfInversionsUnitTest();
 

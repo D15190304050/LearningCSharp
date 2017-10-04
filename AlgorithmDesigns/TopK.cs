@@ -43,7 +43,7 @@ namespace AlgorithmDesigns
         /// <param name="data">The array that contains the candicate data.</param>
         /// <param name="k">The number of element to extract from cadicate data.</param>
         /// <returns>A array that contains top-k element where k is specified by the caller.</returns>
-        public static T[] SortBasedSelection<T>(T[] data, int k) where T : IComparable<T>
+        public static T[] SortBasedExtraction<T>(T[] data, int k) where T : IComparable<T>
         {
             // Check the length before processing.
             int length = data.Length;
@@ -67,7 +67,7 @@ namespace AlgorithmDesigns
         /// <param name="data">The array that contains the candicate data.</param>
         /// <param name="k">The number of element to extract from cadicate data.</param>
         /// <returns>A array that contains top-k element where k is specified by the caller.</returns>
-        public static T[] MinPriorityQueueBasedSelection<T>(T[] data, int k) where T : IComparable<T>
+        public static T[] MinPriorityQueueBasedExtraction<T>(T[] data, int k) where T : IComparable<T>
         {
             // Check the length before processing.
             int length = data.Length;
@@ -123,7 +123,7 @@ namespace AlgorithmDesigns
         /// <param name="data">The array that contains the candicate data.</param>
         /// <param name="k">The number of element to extract from cadicate data.</param>
         /// <returns>A array that contains top-k element where k is specified by the caller.</returns>
-        public static T[] PartitionBasedSelection<T>(T[] data, int k) where T : IComparable<T>
+        public static T[] PartitionBasedExtraction<T>(T[] data, int k) where T : IComparable<T>
         {
             // Check length before processing.
             int length = data.Length;
@@ -165,7 +165,7 @@ namespace AlgorithmDesigns
             return result;
         }
 
-        /* Helper functions for PartitionBasedSelection(). */
+        /* Helper functions for PartitionBasedExtraction(). */
 
         /// <summary>
         /// Partion the sub-array array[low .. high] so that array[low .. j-1] &lt;= array[j] &lt;= array[j+1 .. high]
