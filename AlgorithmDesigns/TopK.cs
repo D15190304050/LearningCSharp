@@ -82,7 +82,7 @@ namespace AlgorithmDesigns
             // Insert (k + 1) item into the priority queue.
             while (i < k + 1)
             {
-                // Add next item in the source data.
+                // Add next item to the source data.
                 queue.Add(data[i]);
 
                 // Update the loop-counter.
@@ -111,7 +111,7 @@ namespace AlgorithmDesigns
             // Extract the top-k elements from the priority queue.
             T[] result = new T[k];
             for (i = 0; i < k; i++)
-                result[i] = queue.DeleteMin();
+                result[k - 1 - i] = queue.DeleteMin();
 
             return result;
         }
