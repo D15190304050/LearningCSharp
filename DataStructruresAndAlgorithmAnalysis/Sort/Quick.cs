@@ -42,8 +42,10 @@ namespace PersonalDataStructuresAndAlgorithm
 
                 // Partition.
                 int partitioned = Partition(array, low, high);
+
                 // Sort the left part array[low ... partitioned-1].
                 Sort(array, low, partitioned - 1);
+
                 // Sort the right part array[partitioned+1 ... high].
                 Sort(array, partitioned + 1, high);
             }
