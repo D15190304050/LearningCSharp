@@ -43,5 +43,19 @@ namespace PersonalDataStructuresAndAlgorithm.Sort
         /// </summary>
         /// <returns>A smallest key on this priority queue.</returns>
         public TKey DeleteMin() { return Delete(); }
+
+        /// <summary>
+        /// Returns the min element on this priority queue.
+        /// </summary>
+        /// <returns>The min element on this priority queue.</returns>
+        public TKey Min()
+        {
+            // Throw an exception if this priority queue is empty when called.
+            if (IsEmpty)
+                throw new InvalidOperationException("Priority queue underflow.");
+
+            // Return the min element on this priority queue.
+            return priorityQueue[1];
+        }
     }
 }

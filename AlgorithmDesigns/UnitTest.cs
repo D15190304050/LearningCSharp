@@ -58,9 +58,17 @@ namespace AlgorithmDesigns
                 Console.WriteLine(i);
             Console.WriteLine();
 
+            // Test the MinPriorityQueueBasedExtraction2() method.
+            // This method will not change the original array, so there is no need for a deep copy.
+            Console.WriteLine("Test for the MinPriorityQueueBasedExtraction2() method.");
+            result = TopK.MinPriorityQueueBasedExtraction2(sourceData, k);
+            foreach (int i in result)
+                Console.WriteLine(i);
+            Console.WriteLine();
+
             // Test the PartitionBasedExtraction() method.
             // Make a deep copy of the source data because the sort operation will change the array.
-            Console.WriteLine("Test for the SortBasedExtraction() method.");
+            Console.WriteLine("Test for the PartitionBasedExtraction() method.");
             for (int i = 0; i < length; i++)
                 data[i] = sourceData[i];
             result = TopK.PartitionBasedExtraction(data, k);
@@ -78,7 +86,7 @@ namespace AlgorithmDesigns
             TopKFunctionalityTest();
 
             // Test with specified data.
-            int length = 100;
+            int length = 1000;
             int[] data = new int[length];
             for (int i = 0; i < data.Length; i++)
                 data[i] = i;

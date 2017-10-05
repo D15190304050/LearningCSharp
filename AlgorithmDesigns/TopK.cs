@@ -61,7 +61,7 @@ namespace AlgorithmDesigns
         }
 
         /// <summary>
-        /// Solves the top-k problem by using a min priority queue.
+        /// Solves the top-k problem using a min priority queue.
         /// </summary>
         /// <typeparam name="T">T is a generic type that implements the IComparable&lt;T> interface.</typeparam>
         /// <param name="data">The array that contains the candicate data.</param>
@@ -82,7 +82,7 @@ namespace AlgorithmDesigns
             // Insert (k + 1) item into the priority queue.
             while (i < k + 1)
             {
-                // Add next item to the source data.
+                // Add next item to the priority queue.
                 queue.Add(data[i]);
 
                 // Update the loop-counter.
@@ -117,6 +117,61 @@ namespace AlgorithmDesigns
         }
 
         /// <summary>
+        /// Solves the top-k problem using a min priority queue.
+        /// </summary>
+        /// <typeparam name="T">T is a generic type that implements the IComparable&lt;T> interface.</typeparam>
+        /// <param name="data">The array that contains the candicate data.</param>
+        /// <param name="k">The number of element to extract from cadicate data.</param>
+        /// <returns>A array that contains top-k element where k is specified by the caller.</returns>
+        public static T[] MinPriorityQueueBasedExtraction2<T>(T[] data, int k) where T : IComparable<T>
+        {
+            // Check the length before processing.
+            int length = data.Length;
+            LengthCheck(length, k);
+
+            // Initialize an empty min priority queue.
+            MinPriorityQueue<T> queue = new MinPriorityQueue<T>();
+
+            // Declare a variable as the loop-counter.
+            int i = 0;
+
+            // Insert k item into the priorityqueue.
+            while (i < k)
+            {
+                // Add next item to the priority queue.
+                queue.Add(data[i]);
+
+                // Update the loop-counter.
+                i++;
+            }
+
+            // Filter the data.
+            while (i < length)
+            {
+                // Get the min element on the priority queue.
+                T min = queue.Min();
+
+                // Remove the min element if it is less than the next item in the input array.
+                // And then add the item to the priority queue.
+                if (min.CompareTo(data[i]) < 0)
+                {
+                    queue.DeleteMin();
+                    queue.Add(data[i]);
+                }
+
+                // Update the loop-counter.
+                i++;
+            }
+
+            // Extract the top-k elements from the priority queue.
+            T[] result = new T[k];
+            for (i = 0; i < k; i++)
+                result[k - 1 - i] = queue.DeleteMin();
+
+            return result;
+        }
+
+        /// <summary>
         /// Sloves the top-k problem by partitioning the data.
         /// </summary>
         /// <typeparam name="T">T is a generic type that implements the IComparable&lt;T> interface.</typeparam>
@@ -136,10 +191,7 @@ namespace AlgorithmDesigns
             int low = 0;
             int high = data.Length - 1;
 
-            // Make a deep copy of k, because the length of the remaining elements to
-            int remainingCount = k;
-
-            // Loop until get some element partitioned with index (data.Length - k).
+            // Loop until there is some element partitioned with index (data.Length - k).
             for (; ; )
             {
                 // Partition some element and get its index.
@@ -147,12 +199,9 @@ namespace AlgorithmDesigns
 
                 // Update the partition range if the index of the partitioned element is not data.Length - k,
                 // break otherwise.
-                if (partitionedIndex > high - remainingCount)
-                {
-                    remainingCount = remainingCount - (high - partitionedIndex + 1);
+                if (partitionedIndex > length - k)
                     high = partitionedIndex - 1;
-                }
-                else if (partitionedIndex < high - remainingCount)
+                else if (partitionedIndex < length - k)
                     low = partitionedIndex + 1;
                 else
                     break;
@@ -161,6 +210,8 @@ namespace AlgorithmDesigns
             T[] result = new T[k];
             for (int i = 0; i < k; i++)
                 result[i] = data[length - 1 - i];
+
+            Merge.Sort(result);
 
             return result;
         }

@@ -38,13 +38,21 @@ namespace PersonalDataStructuresAndAlgorithm
             /// <param name="high"></param>
             private static void Sort<T>(T[] array, T[] auxiliary, int low, int high) where T : IComparable<T>
             {
+                // Returns if there is 1 or 0 element in the array.
                 if (high <= low)
                     return;
 
-                int middle = low + (high - low) / 2;
-                Sort(array, auxiliary, low, middle);                // Sort the left half.
-                Sort(array, auxiliary, middle + 1, high);           // Sort the right half.
-                MergeArray(array, auxiliary, low, middle, high);    // Merge results.
+                // Get the middle index of the range to merge.
+                int middle = (low + high) / 2;
+
+                // Merge sort the left half.
+                Sort(array, auxiliary, low, middle);
+
+                // Merge sort the right half.
+                Sort(array, auxiliary, middle + 1, high);
+
+                // Merge results.
+                MergeArray(array, auxiliary, low, middle, high);
             }
 
             // Merge array[low ... middle] with array[middle+1 ... high].
@@ -54,9 +62,13 @@ namespace PersonalDataStructuresAndAlgorithm
                 for (int i = low; i <= high; i++)
                     auxiliary[i] = array[i];
 
+                // Scanner of sub-array[low ... middle].
+                int left = low;
+
+                // Scanner of sub-array[middle+1 ... high].
+                int right = middle + 1;
+
                 // Merge back to array.
-                int left = low;     // The index of items in sub-array[low ... middle].
-                int right = middle + 1;   // The index of items in sub-array[middle+1 ... high].
                 for (int i = low; i <= high; i++)
                 {
                     if (left > middle)
