@@ -138,5 +138,18 @@ namespace AlgorithmDesigns
             // Print the result.
             NumberOfInversionsFunctionalityTest(TestOption.SepcifiedArray, data);
         }
+
+        public static void RoundRobinFunctionalityTest(int numPlayers)
+        {
+            int[][] arrangement = RoundRobin.Arrange(numPlayers);
+
+            Console.WriteLine("We have following arrangement for the {0} players", numPlayers);
+            for (int i = 0; i < arrangement.Length; i++)
+            {
+                for (int j = 0; j < arrangement[i].Length; j++)
+                    Console.Write("{0,-4} ", arrangement[i][j]);
+                Console.WriteLine();
+            }
+        }
     }
 }

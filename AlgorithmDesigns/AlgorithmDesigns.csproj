@@ -45,6 +45,7 @@
     <Compile Include="NumberOfInversions.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RoundRobin.cs" />
     <Compile Include="TopK.cs" />
     <Compile Include="TestOption.cs" />
     <Compile Include="UnitTest.cs" />
