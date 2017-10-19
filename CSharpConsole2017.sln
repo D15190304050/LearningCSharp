@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AlgorithmDesigns", "Algorit
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataStructruresAndAlgorithmAnalysis", "DataStructruresAndAlgorithmAnalysis\DataStructruresAndAlgorithmAnalysis.csproj", "{44159154-E798-413B-92D6-9784EA434CD9}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetworkConsole", "NetworkConsole\NetworkConsole.csproj", "{F94A9155-40AF-4047-8D09-871991C74465}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{44159154-E798-413B-92D6-9784EA434CD9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{44159154-E798-413B-92D6-9784EA434CD9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{44159154-E798-413B-92D6-9784EA434CD9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F94A9155-40AF-4047-8D09-871991C74465}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F94A9155-40AF-4047-8D09-871991C74465}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F94A9155-40AF-4047-8D09-871991C74465}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F94A9155-40AF-4047-8D09-871991C74465}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
