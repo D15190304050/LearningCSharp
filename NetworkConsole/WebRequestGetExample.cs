@@ -44,6 +44,7 @@ namespace NetworkConsole
 
             // Clean up the streams and the response.
             reader.Close();
+            dataStream.Close();
             response.Close();
         }
     }

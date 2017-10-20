@@ -10,7 +10,8 @@ namespace NetworkConsole
     {
         public static int Main(string[] args)
         {
-            WebRequestGetExample.RequestGetExample();
+            //WebRequestGetExample.RequestGetExample();
+            //WebRequestPostExample.RequestPostExample();
 
             // Keep the console window open in debug mode.
             Console.WriteLine("Press any key to continue...");
