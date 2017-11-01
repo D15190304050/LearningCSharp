@@ -9,12 +9,12 @@ namespace Mathematics
     public class Matrix
     {
         /// <summary>
-        /// Returns the Hadamard product of 2 vectors.
+        /// Returns the element-wise product of 2 vectors.
         /// </summary>
         /// <param name="vector1">A vector.</param>
         /// <param name="vector2">The other vector.</param>
-        /// <returns></returns>
-        public static double[] HadamardProduct(double[] vector1, double[] vector2)
+        /// <returns>The element-wise product of 2 vectors.</returns>
+        public static double[] ElementWiseProduct(double[] vector1, double[] vector2)
         {
             if ((vector1 == null) || vector2 == null)
                 throw new ArgumentNullException("Input vectors must not be null.");
@@ -64,7 +64,7 @@ namespace Mathematics
         /// <param name="vector">The original vector.</param>
         /// <param name="startIndedx">Start index of the sub vector.</param>
         /// <param name="endIndex">End index of the sub vector.</param>
-        /// <returns></returns>
+        /// <returns>vector[startIndex ... (endIndex - 1)] as a double[].</returns>
         public static double[] GetSubVector(double[] vector, int startIndedx, int endIndex)
         {
             if (vector == null)

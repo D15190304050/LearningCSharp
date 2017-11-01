@@ -10,9 +10,6 @@ namespace Startup
     {
         static int Main(string[] args)
         {
-            string s1 = "123";
-            string s2 = Console.ReadLine();
-            Console.WriteLine(s1.Equals(s2));
 
             // Keep the console window open in debug mode.
             Console.WriteLine("Press any key to continue...");

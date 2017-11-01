@@ -13,7 +13,7 @@ namespace Mathematics
             Console.WriteLine("Test for HadamardProduct(double[], double[])");
             double[] vector1 = { 2, 3, 5 };
             double[] vector2 = { 4, 5, 9 };
-            foreach (double d in Matrix.HadamardProduct(vector1, vector2))
+            foreach (double d in Matrix.ElementWiseProduct(vector1, vector2))
                 Console.Write(d + " ");
             Console.WriteLine("\n");
 
