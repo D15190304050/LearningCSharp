@@ -10,6 +10,7 @@ namespace Startup
     {
         static int Main(string[] args)
         {
+            MySqlConnectionTest.ConnectionTest();
 
             // Keep the console window open in debug mode.
             Console.WriteLine("Press any key to continue...");
