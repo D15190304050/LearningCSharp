@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26730.16
+VisualStudioVersion = 15.0.27004.2006
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Startup", "Startup\Startup.csproj", "{E6C7CACF-3C5E-462A-B79A-7758A9B29BB6}"
 EndProject
@@ -14,6 +14,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataStructruresAndAlgorithmAnalysis", "DataStructruresAndAlgorithmAnalysis\DataStructruresAndAlgorithmAnalysis.csproj", "{44159154-E798-413B-92D6-9784EA434CD9}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetworkConsole", "NetworkConsole\NetworkConsole.csproj", "{F94A9155-40AF-4047-8D09-871991C74465}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoreNetworkConsole", "CoreNetworkConsole\CoreNetworkConsole.csproj", "{402F965E-6CB3-422E-B5AB-92CC86561A76}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,6 +47,10 @@ Global
 		{F94A9155-40AF-4047-8D09-871991C74465}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F94A9155-40AF-4047-8D09-871991C74465}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F94A9155-40AF-4047-8D09-871991C74465}.Release|Any CPU.Build.0 = Release|Any CPU
+		{402F965E-6CB3-422E-B5AB-92CC86561A76}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{402F965E-6CB3-422E-B5AB-92CC86561A76}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{402F965E-6CB3-422E-B5AB-92CC86561A76}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{402F965E-6CB3-422E-B5AB-92CC86561A76}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
