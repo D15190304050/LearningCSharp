@@ -50,7 +50,7 @@ namespace PersonalDataStructuresAndAlgorithm.String
             }
             catch (IOException e)
             {
-                Console.WriteLine("EOF");
+                Console.WriteLine(e.Message);
                 buffer = EOF;
                 left = -1;
             }

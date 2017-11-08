@@ -3,14 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using PersonalDataStructuresAndAlgorithm.Graphs.UndirectedGraph;
+using PersonalDataStructuresAndAlgorithm.Graphs.DirectedGraph;
+using PersonalDataStructuresAndAlgorithm.Graphs.EdgeWeightedUndirectedGraph;
+using PersonalDataStructuresAndAlgorithm.Graphs.EdgeWeightedDirectedGraph;
+using PersonalDataStructuresAndAlgorithm.Graphs.FlowNetworks;
 
 namespace PersonalDataStructuresAndAlgorithm.Graphs
 {
     using BasicDataStructures;
-    using UndirectedGraph;
-    using DirectedGraph;
-    using EdgeWeightedUndirectedGraph;
-    using EdgeWeightedDirectedGraph;
 
     /// <summary>
     /// A static class used to make unit test for graph data structures and algorithm. All files will be packaged somewhere.
@@ -29,6 +30,8 @@ namespace PersonalDataStructuresAndAlgorithm.Graphs
         private const string jobsPC = @"Test data\jobsPC.txt";
         private const string tinyEWDn = @"Test data\tinyEWDn.txt";
         private const string rates = @"Test data\rates.txt";
+        private const string tinyFN = @"Test data\tinyFN.txt";
+        private const string testFN = @"Test data\testFN.txt";
 
         /// <summary>
         /// Unit test method for Graph.
@@ -1842,5 +1845,44 @@ namespace PersonalDataStructuresAndAlgorithm.Graphs
              741.00000 EUR = 1012.20600 CAD
             1012.20600 CAD = 1007.14497 USD
             */
+
+        /// <summary>
+        /// Unit test method for the FlowEdge class.
+        /// </summary>
+        public static void FlowEdgeUnitTest()
+        {
+            FlowEdge e = new FlowEdge(12, 23, 4.56);
+            Console.WriteLine(e);
+        }
+
+        /// <summary>
+        /// Unit test method for the FlowNetwork class.
+        /// </summary>
+        public static void FlowNetworkUnitTest()
+        {
+            FlowNetwork G = new FlowNetwork(tinyFN);
+            Console.WriteLine(G);
+        }
+
+        /// <summary>
+        /// Unit test method for the FordFulkerson class.
+        /// </summary>
+        public static void FordFulkersonUnitTest()
+        {
+            FlowNetwork G = new FlowNetwork(testFN);
+            int s = 0;
+            int t = G.V - 1;
+            FordFulkerson maxFlow = new FordFulkerson(G, s, t);
+            Console.WriteLine("Max flow from " + s + " to " + t + ":");
+            for (int v = 0; v < G.V; v++)
+            {
+                foreach (FlowEdge e in G.Adjacent(v))
+                {
+                    if ((v == e.From) && (e.Flow > 0))
+                        Console.WriteLine("    " + e);
+                }
+            }
+            Console.WriteLine("Max flow value = " + maxFlow.FlowValue);
+        }
     }
 }
