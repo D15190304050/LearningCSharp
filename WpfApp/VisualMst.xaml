@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApp"
         mc:Ignorable="d"
-        Title="VisualMst" Height="700" Width="700">
+        Title="VisualMst" Height="700" Width="1000">
 
     <Window.Resources>
         <Style TargetType="Button">
@@ -23,7 +23,7 @@
         <Canvas Name="canvasVisualMst" Grid.Row="0">
             <Canvas.Resources>
                 <GeometryGroup x:Key="roundClip" FillRule="Nonzero">
-                    <EllipseGeometry RadiusX="20" RadiusY="20" Center="5,15" />
+                    <EllipseGeometry RadiusX="10" RadiusY="10" Center="5,15" />
                 </GeometryGroup>
             </Canvas.Resources>
 
@@ -35,7 +35,8 @@
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="2*" />
                 <ColumnDefinition Width="3*" />
-                <ColumnDefinition Width="3*" />
+                <ColumnDefinition Width="2*" />
+                <ColumnDefinition Width="2*" />
             </Grid.ColumnDefinitions>
 
             <!-- The grid that contains the Add and Remove button. -->
@@ -82,6 +83,17 @@
 
                 <Button Name="cmdShowMst" Grid.Row="0" Click="cmdShowMst_Click">Show Minimum Spanning Tree</Button>
                 <Button Name="cmdShowNextStep" Grid.Row="1" Click="cmdShowNextStep_Click">Show Next Step</Button>
+            </Grid>
+
+            <!-- The grid that contains the button to do the clear operation. -->
+            <Grid Grid.Column="3" HorizontalAlignment="Center">
+                <Grid.RowDefinitions>
+                    <RowDefinition />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+                
+                <Button Name="cmdClearCanvas" Grid.Row="0" Click="cmdClearCanvas_Click">Clear Canvas</Button>
+                <Button Name="cmdClearResult" Grid.Row="1" Click="cmdClearResult_Click">Clear Result</Button>
             </Grid>
         </Grid>
     </Grid>

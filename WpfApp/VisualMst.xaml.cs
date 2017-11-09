@@ -43,5 +43,15 @@ namespace WpfApp
         {
 
         }
+
+        private void cmdClearCanvas_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void cmdClearResult_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
