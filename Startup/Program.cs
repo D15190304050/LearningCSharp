@@ -10,7 +10,15 @@ namespace Startup
     {
         static int Main(string[] args)
         {
-            MySqlConnectionTest.ConnectionTest();
+            //MySqlConnectionTest.ConnectionTest();
+
+            string[] txt = { "I", "am", "fine", "thank", "you" };
+            LinkedList<string> list = new LinkedList<string>();
+            SortedSet<string> set = new SortedSet<string>(txt);
+            set.Remove("I");
+            foreach (string s in set)
+                Console.Write(s + " ");
+            Console.WriteLine();
 
             // Keep the console window open in debug mode.
             Console.WriteLine("Press any key to continue...");

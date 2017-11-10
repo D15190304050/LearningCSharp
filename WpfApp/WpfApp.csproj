@@ -54,6 +54,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="GraphCanvas.cs" />
     <Compile Include="VisualMst.xaml.cs">
       <DependentUpon>VisualMst.xaml</DependentUpon>
     </Compile>

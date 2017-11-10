@@ -20,15 +20,9 @@
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
-        <Canvas Name="canvasVisualMst" Grid.Row="0">
-            <Canvas.Resources>
-                <GeometryGroup x:Key="roundClip" FillRule="Nonzero">
-                    <EllipseGeometry RadiusX="10" RadiusY="10" Center="5,15" />
-                </GeometryGroup>
-            </Canvas.Resources>
-
-            <TextBlock Background="DarkGray" FontSize="20" Canvas.Top="50" Canvas.Left="50" Clip="{StaticResource roundClip}">6</TextBlock>
-        </Canvas>
+        <!-- The canvas used for graph layout. -->
+        <local:GraphCanvas x:Name="graphCanvas" Grid.Row="0">
+        </local:GraphCanvas>
 
         <!-- The grid that contains operations. -->
         <Grid Grid.Row="1" ShowGridLines="True">
@@ -71,7 +65,7 @@
                 <TextBox Name="txtVertex2" Grid.Row="1" Grid.Column="1" Margin="5" VerticalContentAlignment="Center" />
                 <TextBox Name="txtWeight" Grid.Row="2" Grid.Column="1" Margin="5" VerticalContentAlignment="Center" />
 
-                <Button Grid.Row="0" Grid.Column="2" Grid.RowSpan="3" VerticalAlignment="Center">Add Edge</Button>
+                <Button Name="cmdAddEdge" Grid.Row="0" Grid.Column="2" Grid.RowSpan="3" VerticalAlignment="Center" Click="cmdAddEdge_Click">Add Edge</Button>
             </Grid>
 
             <!-- The grid that contains the show action. -->
