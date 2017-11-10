@@ -29,6 +29,7 @@ namespace WpfApp
         private int vertexCount;
 
         private LinkedList<Label> vertices;
+        private CoordinateConverter coordinateConverter;
 
         public VisualMst()
         {
@@ -40,6 +41,7 @@ namespace WpfApp
             drawingPen = new Pen(Brushes.DarkGray, 2);
             labelForeground = Brushes.Black;
             vertices = new LinkedList<Label>();
+            coordinateConverter = new CoordinateConverter();
         }
 
         private void cmdAddVertex_Click(object sender, RoutedEventArgs e)
@@ -90,10 +92,13 @@ namespace WpfApp
 
             Binding bindingX1 = new Binding();
             bindingX1.Source = vertexV1;
-            bindingX1.Path = new PropertyPath("");
+            bindingX1.Path = new PropertyPath("(Canvas.LeftProperty)");
+            bindingX1.Converter = coordinateConverter;
+            bindingX1.ConverterParameter = vertexV1.ActualWidth;
 
             Line edge = new Line();
-            edge.X1 = (double)vertexV1.GetValue(Canvas.LeftProperty) + vertexV1.ActualWidth / 2;
+            //edge.X1 = (double)vertexV1.GetValue(Canvas.LeftProperty) + vertexV1.ActualWidth / 2;
+            edge.SetBinding(Line.X1Property, bindingX1);
             edge.Y1 = (double)vertexV1.GetValue(Canvas.TopProperty) + vertexV1.ActualHeight / 2;
             edge.X2 = (double)vertexV2.GetValue(Canvas.LeftProperty) + vertexV2.ActualWidth / 2;
             edge.Y2 = (double)vertexV2.GetValue(Canvas.TopProperty) + vertexV2.ActualHeight / 2;
