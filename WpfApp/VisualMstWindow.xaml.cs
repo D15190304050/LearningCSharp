@@ -23,16 +23,19 @@ namespace WpfApp
         private const string Kruskal = "Kruskal's Algorithm";
 
         private bool isDragging;
+
         private Label selectedLabel;
         private Brush lblBackground;
         private Brush lblBorder;
         private Brush lblForeground;
         private Brush selectedLabelBackground;
-        private Brush normalEdgeBrush = Brushes.Black;
-        private Brush mstEdgeStroke = Brushes.MediumVioletRed;
+        private Brush normalEdgeBrush;
+        private Brush mstEdgeStroke;
 
         private LinkedList<Label> vertices;
         private LinkedList<WeightLabel> weightLabels;
+        private Dictionary<Line, VisualEdge> edgeMap;
+
         private EdgeCoordinateConverter coordinateConverter;
 
         private VisualEdgeWeightedGraph visualGraph;
@@ -48,6 +51,8 @@ namespace WpfApp
             lblBorder = Brushes.DarkGray;
             lblForeground = Brushes.Black;
             selectedLabelBackground = Brushes.Orange;
+            normalEdgeBrush = Brushes.Black;
+            mstEdgeStroke = Brushes.MediumVioletRed;
             vertices = new LinkedList<Label>();
             weightLabels = new LinkedList<WeightLabel>();
             coordinateConverter = new EdgeCoordinateConverter();
