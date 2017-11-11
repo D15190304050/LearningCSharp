@@ -54,11 +54,16 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="CoordinateConverter.cs" />
+    <Compile Include="EdgeCoordinateConverter.cs" />
     <Compile Include="GraphCanvas.cs" />
-    <Compile Include="VisualMst.xaml.cs">
-      <DependentUpon>VisualMst.xaml</DependentUpon>
+    <Compile Include="VisualEdge.cs" />
+    <Compile Include="VisualEdgeWeightedGraph.cs" />
+    <Compile Include="VisualKruskalMst.cs" />
+    <Compile Include="VisualMstWindow.xaml.cs">
+      <DependentUpon>VisualMstWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="VisualPrimMst.cs" />
+    <Compile Include="WeightLabel.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -71,7 +76,7 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="VisualMst.xaml">
+    <Page Include="VisualMstWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -101,6 +106,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DataStructruresAndAlgorithmAnalysis\DataStructruresAndAlgorithmAnalysis.csproj">
+      <Project>{44159154-e798-413b-92d6-9784ea434cd9}</Project>
+      <Name>DataStructruresAndAlgorithmAnalysis</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

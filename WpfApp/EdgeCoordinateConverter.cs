@@ -6,19 +6,19 @@ using System.Threading.Tasks;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Globalization;
+using System.Windows;
 
 namespace WpfApp
 {
-    //[ValueConversion(typeof(double), typeof(double))]
-    public class CoordinateConverter : IValueConverter
+    [ValueConversion(typeof(double), typeof(double))]
+    public class EdgeCoordinateConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             double referenceCoordinate = (double)parameter;
             double lblCoordinate = (double)value;
-            //if (!double.TryParse(value.ToString(), ))
 
-                return lblCoordinate + referenceCoordinate / 2;
+            return lblCoordinate + referenceCoordinate / 2;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
