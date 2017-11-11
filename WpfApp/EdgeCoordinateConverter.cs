@@ -10,6 +10,9 @@ using System.Windows;
 
 namespace WpfApp
 {
+    /// <summary>
+    /// 
+    /// </summary>
     [ValueConversion(typeof(double), typeof(double))]
     public class EdgeCoordinateConverter : IValueConverter
     {

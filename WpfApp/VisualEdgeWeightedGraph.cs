@@ -8,7 +8,7 @@ namespace WpfApp
 {
     public class VisualEdgeWeightedGraph
     {
-        private List<LinkedList<VisualEdge>> adjacent;
+        private List<SortedSet<VisualEdge>> adjacent;
 
         public int V { get; private set; }
         public int E { get; private set; }
@@ -17,7 +17,7 @@ namespace WpfApp
         {
             this.V = 0;
             this.E = 0;
-            adjacent = new List<LinkedList<VisualEdge>>();
+            adjacent = new List<SortedSet<VisualEdge>>();
         }
 
         private void ValidateVertex(int v)
@@ -26,21 +26,55 @@ namespace WpfApp
                 throw new ArgumentException(string.Format("Vertex {0} is not between [0,{1}].", v, (V - 1).ToString()));
         }
 
-        public void AddEdge(VisualEdge e)
+        public bool AddEdge(VisualEdge e)
         {
             int v = e.Either();
             int w = e.Other(v);
             ValidateVertex(v);
             ValidateVertex(w);
-            adjacent[v].AddFirst(e);
-            adjacent[w].AddFirst(e);
+
+            if ((adjacent[v] == null) || (adjacent[w] == null))
+                return false;
+
+            adjacent[v].Add(e);
+            adjacent[w].Add(e);
             E++;
+            return true;
+        }
+
+        public void RemoveEdge(VisualEdge e)
+        {
+            int v = e.Either();
+            int w = e.Other(v);
+            if ((adjacent[v] != null) && (adjacent[w] != null))
+            {
+                adjacent[v].Remove(e);
+                adjacent[w].Remove(e);
+                this.E--;
+            }
+        }
+
+        public void RemoveVertex(int v)
+        {
+            IEnumerable<VisualEdge> adjacents = adjacent[v].ToArray();
+            foreach (VisualEdge e in adjacents)
+                RemoveEdge(e);
+            adjacent[v] = null;
         }
 
         public void AddVertex()
         {
             this.V++;
-            adjacent.Add(new LinkedList<VisualEdge>());
+            adjacent.Add(new SortedSet<VisualEdge>());
+        }
+
+        public bool ContainsVertex(int v)
+        {
+            if ((v < 0) || (v >= V))
+                return false;
+            else if (adjacent[v] == null)
+                return false;
+            return true;
         }
 
         public IEnumerable<VisualEdge> Adjacent(int v)
@@ -54,6 +88,9 @@ namespace WpfApp
             LinkedList<VisualEdge> edges = new LinkedList<VisualEdge>();
             for (int v = 0; v < V; v++)
             {
+                if (adjacent[v] == null)
+                    continue;
+
                 int selfLoops = 0;
                 foreach (VisualEdge e in adjacent[v])
                 {
@@ -75,16 +112,21 @@ namespace WpfApp
 
         public override string ToString()
         {
-            StringBuilder s = new StringBuilder(V + " vertices  " + E + " edges\n");
+            int vertexCount = 0;
+            StringBuilder s = new StringBuilder();
             for (int v = 0; v < V; v++)
             {
-                s.Append(v + ": ");
-                foreach (VisualEdge e in adjacent[v])
-                    s.Append(e + "; ");
-                s.Append(Environment.NewLine);
+                if (adjacent[v] != null)
+                {
+                    vertexCount++;
+                    s.Append(v + ": ");
+                    foreach (VisualEdge e in adjacent[v])
+                        s.Append(e + "; ");
+                    s.Append(Environment.NewLine);
+                }
             }
 
-            return s.ToString();
+            return vertexCount + " vertices  " + E + " edges\n" + s.ToString();
         }
 
         public void Clear()

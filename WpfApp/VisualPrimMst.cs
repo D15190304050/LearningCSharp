@@ -64,6 +64,8 @@ namespace WpfApp
 
         private void Scan(VisualEdgeWeightedGraph G, int v)
         {
+            if (G.Adjacent(v) == null)
+                return;
             marked[v] = true;
             foreach (VisualEdge e in G.Adjacent(v))
             {

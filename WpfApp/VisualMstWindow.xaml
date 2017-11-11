@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:WpfApp"
         mc:Ignorable="d"
         Title="VisualMst" Height="700" Width="1000"
-        KeyDown="Window_KeyDown">
+        Loaded="Window_Loaded">
 
     <Window.Resources>
         <Style TargetType="Button">
@@ -29,10 +29,9 @@
 
         <!-- The canvas used for graph layout. -->
         <Border Grid.Row="1" BorderBrush="DarkTurquoise" BorderThickness="2" Margin="10">
-            <local:GraphCanvas x:Name="graphCanvas"
-                           MouseLeftButtonDown="graphCanvas_MouseLeftButtonDown"
+            <Canvas x:Name="graphCanvas"
                            MouseLeftButtonUp="graphCanvas_MouseLeftButtonUp">
-            </local:GraphCanvas>
+            </Canvas>
         </Border>
 
         <!-- The grid that contains operations. -->

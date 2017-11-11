@@ -84,55 +84,79 @@ namespace WpfApp
         {
             int v1 = int.Parse(txtVertex1.Text);
             int v2 = int.Parse(txtVertex2.Text);
-
-
-
             double weight = double.Parse(txtWeight.Text);
 
-            Label vertexV1 = null;
-            Label vertexV2 = null;
+            if ((!visualGraph.ContainsVertex(v1)) || (!visualGraph.ContainsVertex(v2)))
+                return;
+
+            if (ContainsSameEdge(v1, v2))
+            {
+                MessageBoxResult msgResult = MessageBox.Show("Refresh the edge with same end point?", "Adding the exsiting edge.", MessageBoxButton.OKCancel);
+                if (msgResult != MessageBoxResult.OK)
+                    return;
+                else
+                {
+                    VisualEdge edgeToRefresh = null;
+                    foreach (VisualEdge ve in visualGraph.Adjacent(v1))
+                    {
+                        if (ve.Other(v1) == v2)
+                        {
+                            edgeToRefresh = ve;
+                            break;
+                        }
+                    }
+
+                    edgeToRefresh.WeightLabel.Text = weight.ToString();
+                    edgeToRefresh.Weight = weight;
+                    ClearTextBox();
+                    return;
+                }
+            }
+
+            Label vertex1 = null;
+            Label vertex2 = null;
             foreach (Label lbl in vertices)
             {
                 string vertexName = ((TextBlock)lbl.Content).Text;
                 if (vertexName == txtVertex1.Text)
-                    vertexV1 = lbl;
+                    vertex1 = lbl;
                 else if (vertexName == txtVertex2.Text)
-                    vertexV2 = lbl;
+                    vertex2 = lbl;
             }
 
-            if ((vertexV1 == null) || (vertexV2 == null))
+            if ((vertex1 == null) || (vertex2 == null))
                 return;
 
             Binding bindingX1 = new Binding
             {
-                Source = vertexV1,
+                Source = vertex1,
                 Path = new PropertyPath("(Canvas.Left)"),
                 Converter = coordinateConverter,
-                ConverterParameter = vertexV1.ActualWidth
+                ConverterParameter = vertex1.ActualWidth
             };
 
             Binding bindingY1 = new Binding
             {
-                Source = vertexV1,
+                Source = vertex1,
                 Path = new PropertyPath("(Canvas.Top)"),
                 Converter = coordinateConverter,
-                ConverterParameter = vertexV1.ActualHeight
+                ConverterParameter = vertex1.ActualHeight
             };
 
             Binding bindingX2 = new Binding
             {
-                Source = vertexV2,
+                Source = vertex2,
                 Path = new PropertyPath("(Canvas.Left)"),
                 Converter = coordinateConverter,
-                ConverterParameter = vertexV2.ActualWidth
+                ConverterParameter = vertex2.ActualWidth
             };
 
             Binding bindingY2 = new Binding
             {
-                Source = vertexV2,
+                Source = vertex2,
                 Path = new PropertyPath("(Canvas.Top)"),
                 Converter = coordinateConverter,
-                ConverterParameter = vertexV2.ActualHeight
+                ConverterParameter = vertex2.ActualHeight
             };
 
             Line edge = new Line();
@@ -155,21 +179,35 @@ namespace WpfApp
 
             graphCanvas.Children.Add(edge);
             graphCanvas.Children.Add(edgeWeight);
-            graphCanvas.Children.Remove(vertexV1);
-            graphCanvas.Children.Remove(vertexV2);
-            graphCanvas.Children.Add(vertexV1);
-            graphCanvas.Children.Add(vertexV2);
+            graphCanvas.Children.Remove(vertex1);
+            graphCanvas.Children.Remove(vertex2);
+            graphCanvas.Children.Add(vertex1);
+            graphCanvas.Children.Add(vertex2);
 
-            VisualEdge visualEdge = new VisualEdge(v1, v2, weight, edge);
+            VisualEdge visualEdge = new VisualEdge(v1, v2, weight, edge, edgeWeight);
             visualGraph.AddEdge(visualEdge);
 
-            txtVertex1.Text = "";
-            txtVertex2.Text = "";
-            txtWeight.Text = "";
+            ClearTextBox();
         }
 
         private void cmdRemoveVertex_Click(object sender, RoutedEventArgs e)
         {
+            if (selectedLabel != null)
+            {
+                string vertexName = ((TextBlock)selectedLabel.Content).Text;
+                int v = int.Parse(vertexName);
+                IEnumerable<VisualEdge> adjacents = visualGraph.Adjacent(v);
+                foreach (VisualEdge edge in adjacents)
+                {
+                    graphCanvas.Children.Remove(edge.Line);
+                    graphCanvas.Children.Remove(edge.WeightLabel);
+                    weightLabels.Remove(edge.WeightLabel);
+                }
+                visualGraph.RemoveVertex(v);
+                graphCanvas.Children.Remove(selectedLabel);
+                selectedLabel = null;
+            }
+
             MessageBox.Show(visualGraph.ToString());
         }
 
@@ -215,13 +253,7 @@ namespace WpfApp
             visualGraph.Clear();
         }
 
-        private void cmdClearResult_Click(object sender, RoutedEventArgs e)
-        {
-            VisualEdge[] edges = visualGraph.Edges().ToArray();
-            for (int i = 0; i < edges.Length; i++)
-                edges[i].Line.Stroke = normalEdgeBrush;
-        }
-
+        private void cmdClearResult_Click(object sender, RoutedEventArgs e) => ClearResult();
         private void lbl_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             isDragging = true;
@@ -257,19 +289,6 @@ namespace WpfApp
                 w.RefreshCoordinate();
         }
 
-        private void Window_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (selectedLabel == null)
-                return;
-            else if (e.Key != Key.Delete)
-                return;
-        }
-
-        private void graphCanvas_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-        {
-            //Hit
-        }
-
         private void RenderNextMstEdge()
         {
             if (!remainingEdges.MoveNext())
@@ -283,7 +302,35 @@ namespace WpfApp
 
         private bool ContainsSameEdge(int v, int w)
         {
+            foreach (VisualEdge e in visualGraph.Adjacent(v))
+            {
+                int u = e.Other(v);
+                if (u == w)
+                    return true;
+            }
+            return false;
+        }
 
+        private void cbAlgorithm_SelectionChanged(object sender, SelectionChangedEventArgs e) => ClearResult();
+
+        private void ClearResult()
+        {
+            VisualEdge[] edges = visualGraph.Edges().ToArray();
+            for (int i = 0; i < edges.Length; i++)
+                edges[i].Line.Stroke = normalEdgeBrush;
+            remainingEdges = null;
+        }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            cbAlgorithm.SelectionChanged += (o, ev) => ClearResult();
+        }
+
+        private void ClearTextBox()
+        {
+            txtVertex1.Text = "";
+            txtVertex2.Text = "";
+            txtWeight.Text = "";
         }
     }
 }

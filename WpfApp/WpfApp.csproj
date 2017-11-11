@@ -55,7 +55,6 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="EdgeCoordinateConverter.cs" />
-    <Compile Include="GraphCanvas.cs" />
     <Compile Include="VisualEdge.cs" />
     <Compile Include="VisualEdgeWeightedGraph.cs" />
     <Compile Include="VisualKruskalMst.cs" />
