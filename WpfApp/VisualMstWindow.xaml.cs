@@ -19,29 +19,86 @@ namespace WpfApp
     /// </summary>
     public partial class VisualMstWindow : Window
     {
+        /// <summary>
+        /// The stirng literal that indicates the Prim's Algorithm.
+        /// </summary>
         private const string Prim = "Prim's Algorithm";
+
+        /// <summary>
+        /// The string literal that indicates the Kruskal's Algorithm.
+        /// </summary>
         private const string Kruskal = "Kruskal's Algorithm";
 
+        /// <summary>
+        /// True if some vertex is being dragged, false otherwise.
+        /// </summary>
         private bool isDragging;
 
+        /// <summary>
+        /// The selected label, null if there is no label selected.
+        /// </summary>
         private Label selectedLabel;
+
+        /// <summary>
+        /// The background color of visual vertex.
+        /// </summary>
         private Brush lblBackground;
+
+        /// <summary>
+        /// The border color of visual vertex.
+        /// </summary>
         private Brush lblBorder;
+
+        /// <summary>
+        /// The foreground color of visual vertex.
+        /// </summary>
         private Brush lblForeground;
+
+        /// <summary>
+        /// The background color of selected visual vertex.
+        /// </summary>
         private Brush selectedLabelBackground;
+
+        /// <summary>
+        /// The stroke color of odinary edges.
+        /// </summary>
         private Brush normalEdgeBrush;
+
+        /// <summary>
+        /// The stroke color of edges in a MST (or a forest).
+        /// </summary>
         private Brush mstEdgeStroke;
 
+        /// <summary>
+        /// The collection of all visual vertices.
+        /// </summary>
         private LinkedList<Label> vertices;
-        private LinkedList<WeightLabel> weightLabels;
-        private Dictionary<Line, VisualEdge> edgeMap;
 
+        /// <summary>
+        /// The collection of all visual weights.
+        /// </summary>
+        private LinkedList<WeightLabel> weightLabels;
+
+        //private Dictionary<Line, VisualEdge> edgeMap;
+
+        /// <summary>
+        /// A coordinate converter used to compute the correct coordinate of each edge.
+        /// </summary>
         private EdgeCoordinateConverter coordinateConverter;
 
+        /// <summary>
+        /// The visual graph used to compute the MST (or forest).
+        /// </summary>
         private VisualEdgeWeightedGraph visualGraph;
 
+        /// <summary>
+        /// An enumerator to support iterations through all edges in a MST (or forest).
+        /// </summary>
         private IEnumerator<VisualEdge> remainingEdges;
 
+        /// <summary>
+        /// Initializes the window for the visual MST computation.
+        /// </summary>
         public VisualMstWindow()
         {
             InitializeComponent();
@@ -57,8 +114,14 @@ namespace WpfApp
             weightLabels = new LinkedList<WeightLabel>();
             coordinateConverter = new EdgeCoordinateConverter();
             visualGraph = new VisualEdgeWeightedGraph();
+            //edgeMap = new Dictionary<Line, VisualEdge>();
         }
 
+        /// <summary>
+        /// Adds a vertex to the window an to the graph.
+        /// </summary>
+        /// <param name="sender">The Button instance associated with this method.</param>
+        /// <param name="e">The RoutedEventArgs that contains state information and event data associated with the Click event.</param>
         private void cmdAddVertex_Click(object sender, RoutedEventArgs e)
         {
             TextBlock txtVertexName = new TextBlock
@@ -85,14 +148,45 @@ namespace WpfApp
             visualGraph.AddVertex();
         }
 
+        /// <summary>
+        /// Add an edge to the window and the graph.
+        /// </summary>
+        /// <remarks>
+        /// This method will create an instance of VisualEdge using the infomation in the TextBox on the window.
+        /// </remarks>
+        /// <param name="sender">The Button instance associated with this method.</param>
+        /// <param name="e">The RoutedEventArgs that contains state information and event data associated with the Click event.</param>
         private void cmdAddEdge_Click(object sender, RoutedEventArgs e)
         {
-            int v1 = int.Parse(txtVertex1.Text);
-            int v2 = int.Parse(txtVertex2.Text);
-            double weight = double.Parse(txtWeight.Text);
+            // Validate vertex 1.
+            if ((!int.TryParse(txtVertex1.Text, out int v1)) ||
+                v1 < 0)
+            {
+                MessageBox.Show("The name of a vertex in a graph must be a non-negative integer.");
+                return;
+            }
+
+            // Validate vertex 2.
+            if ((!int.TryParse(txtVertex2.Text, out int v2)) ||
+                v2 < 0)
+            {
+                MessageBox.Show("The name of a vertex in a graph must be a non-negative integer.");
+                return;
+            }
+
+            // Validate the weight of this edge.
+            if (!double.TryParse(txtWeight.Text, out double weight))
+            {
+                MessageBox.Show("The value of weight must be a floating point value.");
+                return;
+            }
+
 
             if ((!visualGraph.ContainsVertex(v1)) || (!visualGraph.ContainsVertex(v2)))
+            {
+                MessageBox.Show("Can't add such edge.");
                 return;
+            }
 
             if (ContainsSameEdge(v1, v2))
             {
@@ -191,31 +285,51 @@ namespace WpfApp
 
             VisualEdge visualEdge = new VisualEdge(v1, v2, weight, edge, edgeWeight);
             visualGraph.AddEdge(visualEdge);
+            //edgeMap.Add(edge, visualEdge);
 
             ClearTextBox();
         }
 
-        private void cmdRemoveVertex_Click(object sender, RoutedEventArgs e)
+        /// <summary>
+        /// Removes the selected vertex or selected edge.
+        /// </summary>
+        /// <param name="sender">The Button instance associated with this method.</param>
+        /// <param name="e">The RoutedEventArgs that contains state information and event data associated with the Click event.</param>
+        private void cmdRemove_Click(object sender, RoutedEventArgs e)
         {
             if (selectedLabel != null)
             {
-                string vertexName = ((TextBlock)selectedLabel.Content).Text;
-                int v = int.Parse(vertexName);
-                IEnumerable<VisualEdge> adjacents = visualGraph.Adjacent(v);
-                foreach (VisualEdge edge in adjacents)
-                {
-                    graphCanvas.Children.Remove(edge.Line);
-                    graphCanvas.Children.Remove(edge.WeightLabel);
-                    weightLabels.Remove(edge.WeightLabel);
-                }
-                visualGraph.RemoveVertex(v);
-                graphCanvas.Children.Remove(selectedLabel);
+                if (selectedLabel is Label)
+                    RemoveSelectedVertex();
                 selectedLabel = null;
             }
-
-            MessageBox.Show(visualGraph.ToString());
         }
 
+        /// <summary>
+        /// Remvoes the selected vertex.
+        /// </summary>
+        private void RemoveSelectedVertex()
+        {
+            string vertexName = ((TextBlock)selectedLabel.Content).Text;
+            int v = int.Parse(vertexName);
+            IEnumerable<VisualEdge> adjacents = visualGraph.Adjacent(v);
+            foreach (VisualEdge edge in adjacents)
+            {
+                graphCanvas.Children.Remove(edge.Line);
+                graphCanvas.Children.Remove(edge.WeightLabel);
+                weightLabels.Remove(edge.WeightLabel);
+                //edgeMap.Remove(edge.Line);
+            }
+            visualGraph.RemoveVertex(v);
+            graphCanvas.Children.Remove(selectedLabel);
+            selectedLabel = null;
+        }
+
+        /// <summary>
+        /// Renders all edges of the MST (or forest) corresponding to the VisualEdgeWeightedGraph shown on the window.
+        /// </summary>
+        /// <param name="sender">The Button instance associated with this method.</param>
+        /// <param name="e">The RoutedEventArgs that contains state information and event data associated with the Click event.</param>
         private void cmdShowMst_Click(object sender, RoutedEventArgs e)
         {
             IEnumerable<VisualEdge> mst = new VisualKruskalMst(visualGraph).Edges;
@@ -224,6 +338,11 @@ namespace WpfApp
                 edges[i].Line.Stroke = mstEdgeStroke;
         }
 
+        /// <summary>
+        /// Renders next edge of the MST (or forest) corresponding to the VisualEdgeWeightedGraph shown on the window. Do nothing if the entire MST (or forest) is rendered.
+        /// </summary>
+        /// <param name="sender">The Button instance associated with this method.</param>
+        /// <param name="e">The RoutedEventArgs that contains state information and event data associated with the Click event.</param>
         private void cmdShowNextStep_Click(object sender, RoutedEventArgs e)
         {
             if (remainingEdges != null)
@@ -250,6 +369,11 @@ namespace WpfApp
             }
         }
 
+        /// <summary>
+        /// Removes all elements from the canvas that contains the visualized graph.
+        /// </summary>
+        /// <param name="sender">The Button instance associated with this method.</param>
+        /// <param name="e">The RoutedEventArgs that contains state information and event data associated with the Click event.</param>
         private void cmdClearCanvas_Click(object sender, RoutedEventArgs e)
         {
             graphCanvas.Children.Clear();
@@ -258,79 +382,155 @@ namespace WpfApp
             visualGraph.Clear();
         }
 
+        /// <summary>
+        /// Removes all rendering of edges on MST (or forest).
+        /// </summary>
+        /// <param name="sender">The Button instance associated with this method.</param>
+        /// <param name="e">The RoutedEventArgs that contains state information and event data associated with the Click event.</param>
         private void cmdClearResult_Click(object sender, RoutedEventArgs e) => ClearResult();
+
+        /// <summary>
+        /// Renders the selected visual vertex to indicate that it is the label the user is dragging.
+        /// </summary>
+        /// <param name="sender">The selected visual vertex.</param>
+        /// <param name="e">The MouseButtonEventArgs that contains state information and event data associated with the MouseLeftButtonDown event.</param>
         private void lbl_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
+            // Make the mouse able to drag the visual vertex.
             isDragging = true;
 
+            // Set the background color of last selected visual vertex to ordinary color.
             if (selectedLabel != null)
                 selectedLabel.Background = lblBackground;
 
+            // Set the background color of currrent selected visual vertex.
             selectedLabel = (Label)sender;
             selectedLabel.Background = selectedLabelBackground;
         }
 
+        /// <summary>
+        /// Drags the visual vertex.
+        /// </summary>
+        /// <param name="sender">The selected visual vertex.</param>
+        /// <param name="e">The MouseButtonEventArgs that contains state information and event data associated with the MouseMove event.</param>
         private void lbl_MouseMove(object sender, MouseEventArgs e)
         {
+            // Do nothing if unable to drag.
             if (isDragging)
             {
+                // Get the selected visual vertex.
                 Label selectedLabel = (Label)sender;
+
+                // Get the coordinate of mouse.
                 Point mousePositionOnCanvas = e.GetPosition(graphCanvas);
+
+                // Compute the offset.
                 double offsetX = selectedLabel.ActualWidth / 2;
                 double offsetY = selectedLabel.ActualHeight / 2;
+
+                // Reset the coordinate of the visual vertex.
                 selectedLabel.SetValue(Canvas.LeftProperty, mousePositionOnCanvas.X - offsetX);
                 selectedLabel.SetValue(Canvas.TopProperty, mousePositionOnCanvas.Y - offsetY);
             }
         }
 
-        private void lbl_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
-        {
-            isDragging = false;
-        }
+        /// <summary>
+        /// Cancels the dragging on a visual vertex.
+        /// </summary>
+        /// <param name="sender">The selected visual vertex.</param>
+        /// <param name="e">The MouseButtonEventArgs that contains state information and event data associated with the MouseLeftButtonUp event.</param>
+        private void lbl_MouseLeftButtonUp(object sender, MouseButtonEventArgs e) => isDragging = false;
 
+        /// <summary>
+        /// Refreshes coordinates of all weight labels.
+        /// </summary>
+        /// <param name="sender">The canvas that contains the visualized graph.</param>
+        /// <param name="e">The MouseButtonEventArgs that contains state information and event data associated with the MouseLeftButtonUp event.</param>
         private void graphCanvas_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
             foreach (WeightLabel w in weightLabels)
                 w.RefreshCoordinate();
         }
 
+        /// <summary>
+        /// Renders the next edge on the MST (or forest) corresponding to the visualized graph on the window. Do nothing if the entire MST (or forest) is rendered.
+        /// </summary>
         private void RenderNextMstEdge()
         {
+            // Do nothing if there is no next edge (to render), which indicates the entire MST (or forest) is rendered.
             if (!remainingEdges.MoveNext())
             {
+                // Set the edge enumerator to null to prevent extra computing.
                 remainingEdges = null;
                 return;
             }
-            VisualEdge edge = remainingEdges.Current;
-            edge.Line.Stroke = mstEdgeStroke;
+
+            // Get the edge to render.
+            VisualEdge edgeToRender = remainingEdges.Current;
+
+            // Reset its stroke color.
+            edgeToRender.Line.Stroke = mstEdgeStroke;
         }
 
+        /// <summary>
+        /// Returns true if there is an edge in the VisualEdgeWeightedGraph with the same end points, false otherwise.
+        /// </summary>
+        /// <param name="v">A vertex of the edge to add.</param>
+        /// <param name="w">Another vertex of the edge to add.</param>
+        /// <returns>True if there is an edge in the VisualEdgeWeightedGraph with the same end points, false otherwise.</returns>
         private bool ContainsSameEdge(int v, int w)
         {
+            // Traverse through all edges incident to vertex v.
             foreach (VisualEdge e in visualGraph.Adjacent(v))
             {
+                // Get the other end point of vertex v on this edge.
                 int u = e.Other(v);
+
+                // Return true if they have same end points.
                 if (u == w)
                     return true;
             }
+
+            // No such edge if reach here.
             return false;
         }
 
+        /// <summary>
+        /// Clears the result computed before.
+        /// </summary>
+        /// <param name="sender">The ComboBox whose selected item indicates which algorithm to run.</param>
+        /// <param name="e">The SelectionChangedEventArgs that contains state information and event data associated with the SelectionChanged event.</param>
         private void cbAlgorithm_SelectionChanged(object sender, SelectionChangedEventArgs e) => ClearResult();
 
+        /// <summary>
+        /// Clear the result computed before.
+        /// </summary>
         private void ClearResult()
         {
+            // Set the storke color of all visual edges to ordinary color.
             VisualEdge[] edges = visualGraph.Edges().ToArray();
             for (int i = 0; i < edges.Length; i++)
                 edges[i].Line.Stroke = normalEdgeBrush;
+
+            // Set the edge enumerator to null so it will be re-computed when needed.
+            // If there is no such assignment, then when uesrs click the "Show Next Step" Button, only an uncomplete MST (or forest) can they get.
+            // Because this program will just render next edge returned by this enumerator if it is not null, and they may have several edges rendered before.
             remainingEdges = null;
         }
 
+        /// <summary>
+        /// Associates the SelectionChanged event with its handler after this window is loaded.
+        /// </summary>
+        /// <param name="sender">This window.</param>
+        /// <param name="e">The RoutedEventArgs that contains state information and event data associated with the Loaded event.</param>
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             cbAlgorithm.SelectionChanged += (o, ev) => ClearResult();
         }
 
+        /// <summary>
+        /// Clears all TextBoxes.
+        /// </summary>
         private void ClearTextBox()
         {
             txtVertex1.Text = "";

@@ -8,14 +8,36 @@ using PersonalDataStructuresAndAlgorithm.Sort;
 
 namespace WpfApp
 {
+    /// <summary>
+    /// The VisualKruskalMst class represents a data type for computing a minimum spanning tree in an edge-weighted graph.
+    /// </summary>
+    /// <remarks>
+    /// Note that a minimum spanning tree forest will be computed if there number of connected components in the given edge-weighted graph is larger than 1.
+    /// </remarks>
     public class VisualKruskalMst
     {
+        /// <summary>
+        /// Edges in the MST.
+        /// </summary>
         private System.Collections.Generic.Queue<VisualEdge> mst;
+
+        /// <summary>
+        /// Total weight of this MST.
+        /// </summary>
         public double Weight { get; private set; }
+
+        /// <summary>
+        /// Gets the edges in a MST (or forest) as an enumerator of VisualEdges.
+        /// </summary>
         public IEnumerable<VisualEdge> Edges { get { return mst; } }
 
+        /// <summary>
+        /// Computes a minimum spanning tree (or forest) of a VisualEdgeWeightedGraph.
+        /// </summary>
+        /// <param name="G">The VisualEdgeWeightedGraph.</param>
         public VisualKruskalMst(VisualEdgeWeightedGraph G)
         {
+            // Initialize the data structure for computation.
             this.Weight = 0;
             mst = new System.Collections.Generic.Queue<VisualEdge>();
 
@@ -28,7 +50,10 @@ namespace WpfApp
             UnionFind uf = new UnionFind(G.V);
             while ((!edgePQ.IsEmpty) && (mst.Count < G.V - 1))
             {
+                // Get the next edge with minimum weight.
                 VisualEdge e = edgePQ.DeleteMin();
+
+                // Get 2 end points of this edge.
                 int v = e.Either();
                 int w = e.Other(v);
 
@@ -37,6 +62,8 @@ namespace WpfApp
                 {
                     // Merge v and w components.
                     uf.Union(v, w);
+
+                    // Add this edge to MST and update the total weight.
                     mst.Enqueue(e);
                     this.Weight += e.Weight;
                 }

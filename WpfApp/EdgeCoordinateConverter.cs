@@ -11,7 +11,7 @@ using System.Windows;
 namespace WpfApp
 {
     /// <summary>
-    /// 
+    /// The EdgeCoordinatorConverter class implements the IValueConverter interfance to provide the conversion between the coordinate of vertices of a graph and that of an end point of a visual edge.
     /// </summary>
     [ValueConversion(typeof(double), typeof(double))]
     public class EdgeCoordinateConverter : IValueConverter

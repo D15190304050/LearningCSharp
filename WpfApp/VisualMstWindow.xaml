@@ -51,7 +51,7 @@
                 </Grid.RowDefinitions>
 
                 <Button Name="cmdAddVertex" Grid.Row="0" Click="cmdAddVertex_Click">Add Vertex</Button>
-                <Button Name="cmdRemoveVertex" Grid.Row="1" Click="cmdRemoveVertex_Click">Remove Vertex</Button>
+                <Button Name="cmdRemove" Grid.Row="1" Click="cmdRemove_Click">Remove Vertex</Button>
             </Grid>
 
             <!-- The grid that contains the Add Edge area. -->

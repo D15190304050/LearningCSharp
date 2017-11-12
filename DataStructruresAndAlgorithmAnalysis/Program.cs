@@ -13,7 +13,8 @@ namespace PersonalDataStructuresAndAlgorithm
     {
         static int Main(string[] args)
         {
-            Graphs.UnitTest.FordFulkersonUnitTest();
+            //Graphs.UnitTest.FordFulkersonUnitTest();
+            Graphs.UnitTest.ArbitrageUnitTest();
 
             // Keep the console open during debug mode.
             Console.WriteLine("Press any key to continue...");
