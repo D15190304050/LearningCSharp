@@ -124,11 +124,14 @@ namespace WpfApp
         /// <param name="e">The RoutedEventArgs that contains state information and event data associated with the Click event.</param>
         private void cmdAddVertex_Click(object sender, RoutedEventArgs e)
         {
+            // Initialize a TextBlock to contains the weight with specified vertex name and font size.
             TextBlock txtVertexName = new TextBlock
             {
                 Text = vertices.Count.ToString(),
                 FontSize = 16,
             };
+
+            // Initialize a label with specified content and some other properties.
             Label vertex = new Label
             {
                 Content = txtVertexName,
@@ -138,14 +141,23 @@ namespace WpfApp
                 Foreground = lblForeground,
                 Padding = new Thickness(10)
             };
+
+            // Set the initial coordinate of this weight label.
             vertex.SetValue(Canvas.TopProperty, 10.0);
             vertex.SetValue(Canvas.LeftProperty, 10.0);
+
+            // Associate the mouse event with this weight label.
             vertex.MouseLeftButtonDown += lbl_MouseLeftButtonDown;
             vertex.MouseLeftButtonUp += lbl_MouseLeftButtonUp;
             vertex.MouseMove += lbl_MouseMove;
+
+            // Add this weight label to canvas, vertices and visualGraph for sub-sequent processing.
             graphCanvas.Children.Add(vertex);
             vertices.AddLast(vertex);
             visualGraph.AddVertex();
+
+            // Clear the result computed before because we have a different graph now.
+            ClearResult();
         }
 
         /// <summary>
@@ -158,6 +170,7 @@ namespace WpfApp
         /// <param name="e">The RoutedEventArgs that contains state information and event data associated with the Click event.</param>
         private void cmdAddEdge_Click(object sender, RoutedEventArgs e)
         {
+            #region Validation
             // Validate vertex 1.
             if ((!int.TryParse(txtVertex1.Text, out int v1)) ||
                 v1 < 0)
@@ -181,16 +194,22 @@ namespace WpfApp
                 return;
             }
 
-
+            // Report that can't add this edge if either end point of this edge doesn't exist.
             if ((!visualGraph.ContainsVertex(v1)) || (!visualGraph.ContainsVertex(v2)))
             {
                 MessageBox.Show("Can't add such edge.");
                 return;
             }
+            #endregion
 
+            // Determine whether an update to the existing edge is needed or not.
             if (ContainsSameEdge(v1, v2))
             {
+                // Report that there exists an edge with same end points and get the decision from the user.
                 MessageBoxResult msgResult = MessageBox.Show("Refresh the edge with same end point?", "Adding the exsiting edge.", MessageBoxButton.OKCancel);
+
+                // Do nothing if update is not needed.
+                // Find the edge and refresh its weight otherwise.
                 if (msgResult != MessageBoxResult.OK)
                     return;
                 else
@@ -205,13 +224,22 @@ namespace WpfApp
                         }
                     }
 
+                    // Refresh.
                     edgeToRefresh.WeightLabel.Text = weight.ToString();
                     edgeToRefresh.Weight = weight;
+
+                    // Clear the TextBox to make it easy to add next edge because the user doesn't need to clear the TextBoxes manually.
                     ClearTextBox();
+
+                    // Clear the result computed before because we have a different graph now.
+                    ClearResult();
+
+                    // End this call.
                     return;
                 }
             }
 
+            // Get the label with the same name.
             Label vertex1 = null;
             Label vertex2 = null;
             foreach (Label lbl in vertices)
@@ -223,9 +251,12 @@ namespace WpfApp
                     vertex2 = lbl;
             }
 
+            // Do nothing if no such vertex-pair (technically this if will always get true because there is a same validation above,
+            // and if the pocess reach here, it can pass this validation as well).
             if ((vertex1 == null) || (vertex2 == null))
                 return;
 
+            // Set binding for the X1 property of the visual edge.
             Binding bindingX1 = new Binding
             {
                 Source = vertex1,
@@ -234,6 +265,7 @@ namespace WpfApp
                 ConverterParameter = vertex1.ActualWidth
             };
 
+            // Set binding for the Y1 property of the visual edge.
             Binding bindingY1 = new Binding
             {
                 Source = vertex1,
@@ -242,6 +274,7 @@ namespace WpfApp
                 ConverterParameter = vertex1.ActualHeight
             };
 
+            // Set binding for the X2 property of the visual edge.
             Binding bindingX2 = new Binding
             {
                 Source = vertex2,
@@ -250,6 +283,7 @@ namespace WpfApp
                 ConverterParameter = vertex2.ActualWidth
             };
 
+            // Set binding for the Y2 property of the visual edge.
             Binding bindingY2 = new Binding
             {
                 Source = vertex2,
@@ -258,36 +292,49 @@ namespace WpfApp
                 ConverterParameter = vertex2.ActualHeight
             };
 
-            Line edge = new Line();
+            // Initialize a line as the visual edge with specified stroke.
+            Line edge = new Line
+            {
+                StrokeThickness = 5,
+                Stroke = normalEdgeBrush
+            };             
             //edge.X1 = (double)vertexV1.GetValue(Canvas.LeftProperty) + vertexV1.ActualWidth / 2;
             //edge.Y1 = (double)vertexV1.GetValue(Canvas.TopProperty) + vertexV1.ActualHeight / 2;
             //edge.X2 = (double)vertexV2.GetValue(Canvas.LeftProperty) + vertexV2.ActualWidth / 2;
             //edge.Y2 = (double)vertexV2.GetValue(Canvas.TopProperty) + vertexV2.ActualHeight / 2;
 
+            // Associate bindings with the visual edge.
             edge.SetBinding(Line.X1Property, bindingX1);
             edge.SetBinding(Line.Y1Property, bindingY1);
             edge.SetBinding(Line.X2Property, bindingX2);
             edge.SetBinding(Line.Y2Property, bindingY2);
 
-            edge.StrokeThickness = 5;
-            edge.Stroke = normalEdgeBrush;
-
+            // Initialize the WeightLabel using specified infomation and add it to the canvas and weightLabels.
             WeightLabel edgeWeight = new WeightLabel(edge) { Text = weight.ToString() };
             edgeWeight.RefreshCoordinate();
             weightLabels.AddLast(edgeWeight);
 
+            // Add the edge and its weight to the canvas.
             graphCanvas.Children.Add(edge);
             graphCanvas.Children.Add(edgeWeight);
+
+            // Remove and re-add the 2 vertices of this edge so that the can cover the overlap between the edge created above and itself.
+            // It's about the order to render them.
             graphCanvas.Children.Remove(vertex1);
             graphCanvas.Children.Remove(vertex2);
             graphCanvas.Children.Add(vertex1);
             graphCanvas.Children.Add(vertex2);
 
+            // Create the instance of VisualEdge that represents the edge created above and add it to visualGraph.
             VisualEdge visualEdge = new VisualEdge(v1, v2, weight, edge, edgeWeight);
             visualGraph.AddEdge(visualEdge);
             //edgeMap.Add(edge, visualEdge);
 
+            // Clear the TextBox to make it easy to add next edge because the user doesn't need to clear the TextBoxes manually.
             ClearTextBox();
+
+            // Clear the result computed before because we have a different graph now.
+            ClearResult();
         }
 
         /// <summary>
@@ -303,6 +350,8 @@ namespace WpfApp
                     RemoveSelectedVertex();
                 selectedLabel = null;
             }
+
+            //MessageBox.Show(visualGraph.ToString());
         }
 
         /// <summary>
