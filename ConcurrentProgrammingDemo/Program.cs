@@ -15,8 +15,12 @@ namespace ConcurrentProgrammingDemo
             //CreateThreadsAndPassData.PassDataToThreads();
             //CreateThreadsAndPassData.RetriveDataFromThreads();
 
+            Console.WriteLine("Running the created thread.");
             Thread t = new Thread(PrintNumbers);
             t.Start();
+            t.Join();
+
+            Console.WriteLine("Running the main thread.");
             PrintNumbers();
 
             // Keep the console window open in debug mode.
