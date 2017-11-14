@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
+using System.Diagnostics;
 
 namespace ConcurrentProgrammingDemo
 {
@@ -22,6 +23,7 @@ namespace ConcurrentProgrammingDemo
 
             Console.WriteLine("Running the main thread.");
             PrintNumbers();
+
 
             // Keep the console window open in debug mode.
             Console.WriteLine("Press any key to continue...");
