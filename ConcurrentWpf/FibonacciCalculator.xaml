@@ -1,0 +1,28 @@
+﻿<Window x:Class="ConcurrentWpf.FibonacciCalculator"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ConcurrentWpf"
+        mc:Ignorable="d"
+        Title="FibonacciCalculator" Height="300" Width="300">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+
+        <TextBox Name="txtIndex" Grid.Row="0" Grid.Column="0" VerticalAlignment="Center" Padding="5" Margin="10">42</TextBox>
+        <TextBox Name="txtResult" Grid.Row="0" Grid.Column="1" VerticalAlignment="Center" Padding="5" Margin="10" IsReadOnly="True"></TextBox>
+
+        <ProgressBar Name="progress" Grid.Row="1" Grid.ColumnSpan="2" VerticalAlignment="Center" Height="20" Margin="10" />
+
+        <Button Name="cmdStartAsync" Grid.Row="2" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center" Padding="5" Click="cmdStartAsync_Click">Start Async</Button>
+        <Button Name="cmdCancelAsync" Grid.Row="2" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center" Padding="5" Click="cmdCancelAsync_Click" IsEnabled="False">Cancel Async</Button>
+    </Grid>
+</Window>
