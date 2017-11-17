@@ -43,6 +43,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CancelingThreadsCooperatively.cs" />
+    <Compile Include="ConcurrentQueueDemo.cs" />
     <Compile Include="CreateThreadsAndPassData.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
