@@ -12,7 +12,7 @@ namespace CoreNetworkConsole
         private static byte[] messageToForward = new byte[1024];
 
         private static Socket serverSocket;
-        private static string client;
+        //private static string client;
         private static Socket clientSocket;
         //我这里存了两个Client，因为自己电脑开了两个Client，不会有多的
         //理论上应该开一个Socket[]来保存信息，最好用一个二元组将client的信息和连接绑定起来

@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using System.Collections.Concurrent;
 using System.IO;
+using System.Collections.Concurrent;
+using System.Threading;
 
 namespace CoreNetworkConsole.DistributedSpanningTrees
 {
-    public class AsStandalone
+    public class AsMultiThread
     {
         public int V { get; private set; }
         public int E { get; private set; }
@@ -17,12 +18,46 @@ namespace CoreNetworkConsole.DistributedSpanningTrees
 
         private ConcurrentQueue<BridgeInfo>[] messageQueues;
 
-        public AsStandalone(int V)
+        private class BridgeUpdater
+        {
+            private ConcurrentQueue<BridgeInfo>[] messageQueues;
+
+            public Bridge Bridge { get; set; }
+
+            Func<bool> IsConverged;
+
+            public BridgeUpdater(Bridge bridge, ConcurrentQueue<BridgeInfo>[] messageQueues, Func<bool> isConverged)
+            {
+                this.Bridge = bridge;
+                this.messageQueues = messageQueues;
+                this.IsConverged = isConverged;
+            }
+
+            public void Update()
+            {
+                while (true)
+                {
+                    if (IsConverged())
+                        break;
+
+                    if (Monitor.TryEnter(messageQueues))
+                    {
+                        //if (!Bridge.NeedUpdate(messageQueues))
+                        //    break;
+
+                        Bridge.Update(messageQueues);
+                        Monitor.Exit(messageQueues);
+                    }
+                }
+            }
+        }
+
+        public AsMultiThread(int V)
         {
             Initialize(V);
         }
 
-        public AsStandalone(string filePath)
+        public AsMultiThread(string filePath)
         {
             FileInfo file = new FileInfo(filePath);
             if (!file.Exists)
@@ -100,19 +135,32 @@ namespace CoreNetworkConsole.DistributedSpanningTrees
             for (int v = 0; v < this.V; v++)
                 bridges[v].Restart();
 
-            // Compute the spanning tree of this AS.
-            while (!IsConverged())
-            {
-                foreach (Bridge bridge in bridges)
-                    bridge.Update(messageQueues);
+            BridgeUpdater[] bridgeUpdaters = new BridgeUpdater[V];
+            for (int v = 0; v < this.V; v++)
+                bridgeUpdaters[v] = new BridgeUpdater(bridges[v], messageQueues, IsConverged);
 
-                for (int v = 0; v < V; v++)
-                    rootId[v] = bridges[v].SelfInfo.RootId;
+            AutoResetEvent[] missions = new AutoResetEvent[V];
+
+            Thread[] updaters = new Thread[V];
+            for (int v = 0; v < this.V; v++)
+            {
+                int i = v;
+                missions[i] = new AutoResetEvent(false);
+
+                updaters[i] = new Thread(() => { bridgeUpdaters[i].Update(); missions[i].Set(); });
             }
+
+            for (int v = 0; v < this.V; v++)
+                updaters[v].Start();
+
+            WaitHandle.WaitAll(missions);
         }
 
         private bool IsConverged()
         {
+            for (int v = 0; v < V; v++)
+                rootId[v] = bridges[v].SelfInfo.RootId;
+
             int potentialRoot = rootId[0];
             for (int v = 1; v < V; v++)
             {
@@ -128,7 +176,7 @@ namespace CoreNetworkConsole.DistributedSpanningTrees
 
             for (int v = 0; v < this.V; v++)
             {
-                s.Append(bridges[v].ToString());
+                s.Append(v + $" with root id = {rootId[v]} and designate bridge = {bridges[v].DesignateBridge}");
                 s.Append(Environment.NewLine);
             }
 

@@ -31,30 +31,52 @@ namespace CoreNetworkConsole.DistributedSpanningTrees
             adjacent.AddLast(new BridgeSlim(bridgeId));
         }
 
+        public bool NeedUpdate(ConcurrentQueue<BridgeInfo>[] messageQueues)
+        {
+            ConcurrentQueue<BridgeInfo> inputMessage = messageQueues[SelfInfo.SelfId];
+
+            //lock (messageQueues)
+            if (!inputMessage.IsEmpty)
+            {
+                foreach (BridgeInfo adjacentBridge in inputMessage)
+                {
+                    if (adjacentBridge.RootId < SelfInfo.RootId)
+                    {
+                        return true;
+                    }
+                }
+
+                return false;
+            }
+            else
+                return true;
+        }
+
         public void Update(ConcurrentQueue<BridgeInfo>[] messageQueues)
         {
-            UpdateSelfInfo(messageQueues[SelfInfo.SelfId]);
-            SendConfigurationMessage(messageQueues);
+            //if (NeedUpdate(messageQueues))
+            {
+                UpdateSelfInfo(messageQueues[SelfInfo.SelfId]);
+                SendConfigurationMessage(messageQueues);
+            }
         }
 
         private void UpdateSelfInfo(ConcurrentQueue<BridgeInfo> messageQueue)
         {
-            foreach (BridgeInfo adjacentBridge in messageQueue)
+            while (messageQueue.TryDequeue(out BridgeInfo adjacentBridge))
             {
-                int selfDistanceToRoot = SelfInfo.DistanceToRoot;
-                int adjacentDistanceToRoot = adjacentBridge.DistanceToRoot;
-                if (selfDistanceToRoot > adjacentDistanceToRoot)
+                if (SelfInfo.RootId > adjacentBridge.RootId)
                 {
-                    SelfInfo.DistanceToRoot = adjacentDistanceToRoot + 1;
-                    SelfInfo.RootId = adjacentBridge.RootId;
                     DesignateBridge = adjacentBridge.SelfId;
+                    SelfInfo.RootId = adjacentBridge.RootId;
+                    SelfInfo.DistanceToRoot = adjacentBridge.DistanceToRoot + 1;
                 }
-                else if (selfDistanceToRoot == adjacentDistanceToRoot)
+                else if (SelfInfo.RootId == adjacentBridge.RootId)
                 {
-                    if (SelfInfo.RootId > adjacentBridge.RootId)
+                    if (SelfInfo.DistanceToRoot > adjacentBridge.DistanceToRoot + 1)
                     {
-                        SelfInfo.RootId = adjacentBridge.RootId;
                         DesignateBridge = adjacentBridge.SelfId;
+                        SelfInfo.DistanceToRoot = adjacentBridge.DistanceToRoot + 1;
                     }
                 }
             }
@@ -62,19 +84,26 @@ namespace CoreNetworkConsole.DistributedSpanningTrees
 
         private void SendConfigurationMessage(ConcurrentQueue<BridgeInfo>[] messageQueues)
         {
-            if (this.IsRoot)
+            foreach (BridgeSlim adjacentBridge in adjacent)
             {
-                foreach (BridgeSlim adjacentBridge in adjacent)
-                {
-                    if (adjacentBridge.CanSend)
-                        messageQueues[adjacentBridge.Id].Enqueue(SelfInfo);
-                }
+                if (adjacentBridge.CanSend)
+                    messageQueues[adjacentBridge.Id].Enqueue(SelfInfo);
             }
         }
 
         public override string ToString()
         {
             return string.Format($"Bridge ID = {SelfInfo.SelfId}, Next hop to root = {DesignateBridge}, Distance to root = {SelfInfo.DistanceToRoot}");
+        }
+
+        public void Restart()
+        {
+            SelfInfo.RootId = SelfInfo.SelfId;
+            SelfInfo.DistanceToRoot = 0;
+            DesignateBridge = SelfInfo.SelfId;
+
+            // Note : We don't need to refresh the adjacency list.
+            // If you do that, the spanning tree algorithm will never converge.
         }
     }
 }
