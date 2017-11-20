@@ -18,22 +18,10 @@ namespace CoreNetworkConsole
             //SpanningTreeUnitTest.AsStandaloneTest(tinyGraph02);
             SpanningTreeUnitTest.AsMultiThreadTest(tinyGraph02);
 
-            //Thread t = new Thread(PrintNumbers);
-            //t.Start();
-            //t.Join();
-            //Console.WriteLine(t.ThreadState);
-
             // Keep the console window open in debug mode.
             Console.WriteLine("Press any key to continue...");
             Console.ReadKey();
             return 0;
-        }
-
-        public static void PrintNumbers()
-        {
-            for (int i = 0; i < 10; i++)
-                Console.Write(i + " ");
-            Console.WriteLine();
         }
     }
 }

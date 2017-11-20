@@ -18,6 +18,7 @@
         <StackPanel Button.Click="Button_Click">
             <Button>ProgressPercentage</Button>
             <Button>FibonacciCalculator</Button>
+            <Button>WordCounter</Button>
         </StackPanel>
     </Grid>
 </Window>
