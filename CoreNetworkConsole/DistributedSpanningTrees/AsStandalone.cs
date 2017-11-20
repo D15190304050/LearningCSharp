@@ -182,10 +182,6 @@ namespace CoreNetworkConsole.DistributedSpanningTrees
                 // Update the information of every bridge.
                 foreach (Bridge bridge in bridges)
                     bridge.Update(messageQueues);
-
-                // Update the root ID of every bridge.
-                for (int v = 0; v < V; v++)
-                    rootId[v] = bridges[v].RootId;
             }
         }
 
@@ -195,6 +191,11 @@ namespace CoreNetworkConsole.DistributedSpanningTrees
         /// <returns>True if the spanning tree algorithm converges, otherwise, false.</returns>
         private bool IsConverged()
         {
+            // Update the root ID of every bridge.
+            for (int v = 0; v < V; v++)
+                rootId[v] = bridges[v].RootId;
+
+            // Check if converged.
             int potentialRoot = rootId[0];
             for (int v = 1; v < V; v++)
             {
