@@ -32,7 +32,7 @@ namespace CoreNetworkConsole.DistributedSpanningTrees
                 this.done = done;
             }
 
-            public void Update()
+            public void Update(object state)
             {
                 while (!signal.IsConverged)
                 {
@@ -58,7 +58,7 @@ namespace CoreNetworkConsole.DistributedSpanningTrees
                 this.signal = signal;
             }
 
-            public void Transmit()
+            public void Transmit(object state)
             {
                 while (!signal.IsConverged)
                 {
@@ -108,8 +108,10 @@ namespace CoreNetworkConsole.DistributedSpanningTrees
 
         private void Initialize(int bridgeCount, int lanCount)
         {
-            signal = new Signal();
-            signal.IsConverged = false;
+            signal = new Signal
+            {
+                IsConverged = false
+            };
 
             this.BridgeCount = bridgeCount;
             this.LanCount = lanCount;
@@ -135,6 +137,12 @@ namespace CoreNetworkConsole.DistributedSpanningTrees
             lans[lanId].AddConnection(bridges[bridgeId]);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// Use work thread instead of thread pool will be faster.
+        /// </remarks>
         public void RunDST()
         {
             ClearST();
@@ -146,6 +154,7 @@ namespace CoreNetworkConsole.DistributedSpanningTrees
             for (int i = 0; i < bridges.Length; i++)
             {
                 BridgeUpdater updater = new BridgeUpdater(bridges[i], waitSignals[i], ref signal);
+                //ThreadPool.QueueUserWorkItem(updater.Update, null);
                 Thread t = new Thread(updater.Update);
                 t.Start();
             }
@@ -153,6 +162,7 @@ namespace CoreNetworkConsole.DistributedSpanningTrees
             for (int i = 0; i < lans.Length; i++)
             {
                 LanWorker worker = new LanWorker(lans[i], waitSignals[i + this.BridgeCount], ref signal);
+                //ThreadPool.QueueUserWorkItem(worker.Transmit, null);
                 Thread t = new Thread(worker.Transmit);
                 t.Start();
             }
