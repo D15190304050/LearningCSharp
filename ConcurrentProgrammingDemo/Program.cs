@@ -15,8 +15,9 @@ namespace ConcurrentProgrammingDemo
             //CreateThreadsAndPassData.CreateAThread();
             //CreateThreadsAndPassData.PassDataToThreads();
             //CreateThreadsAndPassData.RetriveDataFromThreads();
+            //ConcurrentQueueDemo.Demo();
 
-            ConcurrentQueueDemo.Demo();
+
 
             // Keep the console window open in debug mode.
             Console.WriteLine("Press any key to continue...");
