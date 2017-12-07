@@ -12,7 +12,17 @@ namespace CoreNetworkConsole
         public static int Main(string[] args)
         {
             //UnitTest.LanStandaloneTest();
-            UnitTest.LanMultiThreadTest();
+            //UnitTest.LanMultiThreadTest();
+            //new Thread(NatHoleServer.StartServer).Start();
+
+            //new Thread(new NatHoleClient().StartClient).Start();
+            //new Thread(new NatHoleClient().StartClient).Start();
+
+            NatHoleServer.StartServer();
+            //new NatHoleClient().StartClient();
+
+            //NatClient.StartClient();
+            //NatServer.StartServer(8885);
 
             // Keep the console window open in debug mode.
             Console.WriteLine("Press any key to continue...");

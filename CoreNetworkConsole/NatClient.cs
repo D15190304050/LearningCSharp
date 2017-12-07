@@ -25,7 +25,7 @@ namespace CoreNetworkConsole
         public static void StartClient()
         {
 
-            IPAddress ip = IPAddress.Parse("172.21.228.204");
+            IPAddress ip = IPAddress.Parse("172.21.228.123");
             clientSocket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
             try
             {
@@ -51,7 +51,7 @@ namespace CoreNetworkConsole
                     string sendMessage = Console.ReadLine();
                     if (sendMessage.IndexOf("<EOF>") > -1)
                         break;
-                    clientSocket.Send(Encoding.ASCII.GetBytes("Heimdallr:" + sendMessage));
+                    clientSocket.Send(Encoding.ASCII.GetBytes("Heimdallr:\n " + sendMessage));
 
                 }
                 catch

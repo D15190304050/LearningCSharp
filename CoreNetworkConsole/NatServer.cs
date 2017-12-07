@@ -24,7 +24,7 @@ namespace CoreNetworkConsole
 
         private static void SetPort(int port)
         {
-            IPAddress ip = IPAddress.Parse("172.21.228.204");//set ip
+            IPAddress ip = IPAddress.Parse("172.21.228.123");//set ip
             serverSocket = new Socket(AddressFamily.InterNetwork,
               SocketType.Stream, ProtocolType.Tcp);//initialize
             serverSocket.Bind(new IPEndPoint(ip, port));//bind
