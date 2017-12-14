@@ -13,16 +13,15 @@ namespace CoreNetworkConsole
         {
             //UnitTest.LanStandaloneTest();
             //UnitTest.LanMultiThreadTest();
-            //new Thread(NatHoleServer.StartServer).Start();
-
-            //new Thread(new NatHoleClient().StartClient).Start();
-            //new Thread(new NatHoleClient().StartClient).Start();
-
-            NatHoleServer.StartServer();
-            //new NatHoleClient().StartClient();
-
             //NatClient.StartClient();
             //NatServer.StartServer(8885);
+
+            //Thread serverThread = new Thread(SyncListenr.StartServer);
+            //Thread clientThread = new Thread(SyncSender.StartClient);
+            //serverThread.Start();
+            //clientThread.Start();
+            //SyncSender.StartClient();
+            SyncListenr.StartServer();
 
             // Keep the console window open in debug mode.
             Console.WriteLine("Press any key to continue...");
