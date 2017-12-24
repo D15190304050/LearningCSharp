@@ -29,6 +29,8 @@ namespace AlgorithmDesigns
                 Console.Write(i + " ");
             Console.WriteLine();
 
+            Console.WriteLine("This is active power mode");
+
             // Keep the console window open in debug mode.
             Console.WriteLine("Press any key to continue...");
             Console.ReadKey();
