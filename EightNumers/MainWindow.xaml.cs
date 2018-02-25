@@ -24,5 +24,40 @@ namespace EightNumers
         {
             InitializeComponent();
         }
+
+        private void cmdModifyTargetState_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void cmdModifyCurrentState_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void cmdFinishModifyingCurrentState_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void cmdFinishModifyingTargetState_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void cmdRandomInit_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void cmdSolve_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void cmdNextStep_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
