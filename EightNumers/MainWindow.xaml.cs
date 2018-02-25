@@ -30,12 +30,11 @@ namespace EightNumers
 
         }
 
-        private void cmdModifyCurrentState_Click(object sender, RoutedEventArgs e)
+        private void cmdFinishModifyingCurrentState_Click(object sender, RoutedEventArgs e)
         {
 
         }
-
-        private void cmdFinishModifyingCurrentState_Click(object sender, RoutedEventArgs e)
+        private void cmdModifyCurrentState_Click(object sender, RoutedEventArgs e)
         {
 
         }

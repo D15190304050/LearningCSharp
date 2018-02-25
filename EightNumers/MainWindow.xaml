@@ -135,6 +135,9 @@
             </Grid.RowDefinitions>
 
             <CheckBox HorizontalAlignment="Right">Show</CheckBox>
+            <GroupBox Grid.Row="1" Header="Steps">
+                <TextBox BorderBrush="Black" BorderThickness="1" VerticalScrollBarVisibility="Visible" Style="{x:Null}" />
+            </GroupBox>
         </Grid>
     </Grid>
 </Window>
