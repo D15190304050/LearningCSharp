@@ -22,11 +22,18 @@ namespace AlgorithmDesigns
             //UnitTest.NumberOfInversionsUnitTest();
             //UnitTest.RoundRobinFunctionalityTest(16);
 
-            RejectAllowances ra = new RejectAllowances(3, 16, CostFunc, 0.5, 3);
-            ra.Execute();
-            Console.WriteLine($"Expected total cost = {ra.ExpectedTotalCost * 100}");
-            foreach (int i in ra.Policy)
-                Console.Write(i + " ");
+            // O(k,j) = max(O(k,j-1), vj + O(k-wj,j-1)) if wj ≤ k.
+            double[] values = { 5, 6, 3 };
+            double[] weights = { 4, 5, 2 };
+            int totalCapacity = 9;
+
+            double maxValue = KnapsackProblem.SingleItem(totalCapacity, weights, values, out bool[] selectedItems);
+            Console.WriteLine(maxValue);
+            for (int i = 0; i < selectedItems.Length; i++)
+            {
+                if (selectedItems[i])
+                    Console.Write(i + " ");
+            }
             Console.WriteLine();
 
             // Keep the console window open in debug mode.
