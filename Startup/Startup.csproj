@@ -46,6 +46,7 @@
     <Compile Include="MySqlConnectionTest.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="QuadraticEquation.cs" />
     <Compile Include="SmallFunctions.cs" />
     <Compile Include="SqlServerConnectionTest.cs" />
   </ItemGroup>
