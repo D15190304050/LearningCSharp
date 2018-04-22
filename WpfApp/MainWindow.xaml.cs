@@ -34,7 +34,7 @@ namespace WpfApp
             Assembly assembly = type.Assembly;
             Window window = (Window)assembly.CreateInstance(type.Namespace + "." + cmd.Content);
 
-            window.ShowDialog();
+            window.Show();
         }
     }
 }
