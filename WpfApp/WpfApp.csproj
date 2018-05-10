@@ -63,7 +63,9 @@
     <Compile Include="ScreenCaptureReceiver.xaml.cs">
       <DependentUpon>ScreenCaptureReceiver.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ScreenCaptureSender.cs" />
+    <Compile Include="ScreenCaptureSender.xaml.cs">
+      <DependentUpon>ScreenCaptureSender.xaml</DependentUpon>
+    </Compile>
     <Compile Include="VisualEdge.cs" />
     <Compile Include="VisualEdgeWeightedGraph.cs" />
     <Compile Include="VisualKruskalMst.cs" />
@@ -84,11 +86,11 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="ScreenCaptureSender.xaml">
+    <Page Include="ScreenCaptureReceiver.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="ScreenCaptureReceiver.xaml">
+    <Page Include="ScreenCaptureSender.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

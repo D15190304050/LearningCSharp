@@ -125,7 +125,7 @@ namespace WpfApp
             timer.Elapsed += ElapsedHandler;
             timer.Start();
         }
-        
+
         /// <summary>
         /// Sends screen captures to client when Elapsed event occured.
         /// </summary>
@@ -167,7 +167,7 @@ namespace WpfApp
 
             // Get byte array representation of the bitmap.
             byte[] contentBytes = ms.GetBuffer();
-            
+
             // Close the MemoryStream.
             ms.Close();
 
