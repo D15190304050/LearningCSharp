@@ -42,6 +42,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AndOrTree.cs" />
+    <Compile Include="AndOrTreeNode.cs" />
+    <Compile Include="AndOrTreeNodeType.cs" />
     <Compile Include="CostFunction.cs" />
     <Compile Include="KnapsackProblem.cs" />
     <Compile Include="NumberOfInversions.cs" />
@@ -65,6 +68,11 @@
       <Project>{a876a2b3-1765-4b42-bbe0-da7de7aac6b2}</Project>
       <Name>Mathematics</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="TestData\Tiny AndOrTree.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

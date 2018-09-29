@@ -151,5 +151,11 @@ namespace AlgorithmDesigns
                 Console.WriteLine();
             }
         }
+
+        public static void AndOrTreeTest()
+        {
+            AndOrTree tree = new AndOrTree("TestData/Tiny AndOrTree.txt");
+            Console.WriteLine(tree);
+        }
     }
 }
