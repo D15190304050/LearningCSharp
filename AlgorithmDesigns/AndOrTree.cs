@@ -69,9 +69,16 @@ namespace AlgorithmDesigns
             return null;
         }
 
-        private void DepthFirstSearch(AndOrTreeNode node)
+        private void DepthFirstSearch(AndOrTreeNode node, LinkedList<AndOrTreeNode> path, bool solved)
         {
+            if (solved)
+                return;
 
+            foreach (AndOrTreeNode child in node.GetChildren())
+            {
+                path.AddLast(child);
+                
+            }
         }
 
         public AndOrTree DepthFirstSearch(long maxDepth)
