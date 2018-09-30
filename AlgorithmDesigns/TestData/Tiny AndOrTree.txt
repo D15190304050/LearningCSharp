@@ -1,18 +1,18 @@
 ﻿0 or false
 1 or true
 2 or true
-3 or false 0
-4 and false 1 2
+3 or unknown 0
+4 and unknown 1 2
 5 or false
 6 or true
 7 or true
 8 or true
 9 or false
 10 or true
-11 or false 3 4
-12 and false 5 6
-13 and false 7 8
-14 or false 9 10
-15 or false 11 12
-16 or false 13 14
-17 or false 15 16
+11 or unknown 3 4
+12 and unknown 5 6
+13 and unknown 7 8
+14 or unknown 9 10
+15 or unknown 11 12
+16 or unknown 13 14
+17 or unknown 15 16

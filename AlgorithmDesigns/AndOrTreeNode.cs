@@ -10,7 +10,7 @@ namespace AlgorithmDesigns
     {
         public int Id { get; }
 
-        public bool Value { get; set; }
+        public bool? Solvable { get; set; }
 
         public AndOrTreeNodeType NodeType { get; }
 
@@ -20,10 +20,10 @@ namespace AlgorithmDesigns
 
         public bool IsLeafNode => children.Count == 0;
 
-        public AndOrTreeNode(int id, AndOrTreeNodeType nodeType, bool value = false)
+        public AndOrTreeNode(int id, AndOrTreeNodeType nodeType, bool? value = null)
         {
             this.Id = id;
-            this.Value = value;
+            this.Solvable = value;
             this.NodeType = nodeType;
             this.Parent = null;
             children = new LinkedList<AndOrTreeNode>();
