@@ -18,6 +18,7 @@ namespace AlgorithmDesigns
 
         private AndOrTreeNode root;
         private AndOrTreeNode[] treeNodes;
+        private AndOrTree solutionTree;
 
         public AndOrTree()
         {
@@ -73,30 +74,23 @@ namespace AlgorithmDesigns
 
         public AndOrTree DepthFirstSearch()
         {
+            solutionTree = null;
 
-
-            return null;
-        }
-
-        private void DepthFirstSearch(AndOrTreeNode node, LinkedList<AndOrTreeNode> path, bool solved)
-        {
-            if (solved)
-                return;
-
-            foreach (AndOrTreeNode child in node.GetChildren())
-            {
-                path.AddLast(child);
-                
-            }
-        }
-
-        public AndOrTree DepthFirstSearch(long maxDepth)
-        {
             // If this tree has only 1 node (the root).
             // If the root is true, return the tree itself.
             // Otherwise return null, meaning: no proper solution.
             if (root.IsLeafNode)
-                return root.Solvable == true ? this : null;
+            {
+                solutionTree = new AndOrTree();
+
+                if (root.Solvable == true)
+                {
+                    solutionTree.root = this.root.DeepCopy();
+                    return solutionTree;
+                }
+                else
+                    return null;
+            }
 
             // A boolean array that records whether a node is marked before.
             bool[] marked = new bool[treeNodes.Length];
@@ -105,13 +99,76 @@ namespace AlgorithmDesigns
             //Queue<AndOrTreeNode> nodes = new Queue<AndOrTreeNode>();
             //nodes.Enqueue(root);
 
-            DepthFirstSearch(maxDepth, 0, root, marked);
+            bool solved = false;
+            DepthFirstSearch(root, marked, ref solved);
 
-            return null;
+            return solutionTree;
         }
 
-        public void DepthFirstSearch(long maxDepth, int currentDepth, AndOrTreeNode node, bool[] marked)
+        private void DepthFirstSearch(AndOrTreeNode node, bool[] marked, ref bool solved)
         {
+            // Stop searching if DFS has found a solution.
+            if (solved)
+                return;
+
+            marked[node.Id] = true;
+
+            // If this is not a leaf node, keep searching.
+            // Otherwise, if this is a leaf node and solvable, than try to trace back.
+            // Otherwise, this is a unsolvable leaf node, which means no need to trace back and return to the caller immediately.
+            if (!node.IsLeafNode)
+            {
+                foreach (AndOrTreeNode child in node.GetChildren())
+                    DepthFirstSearch(child, marked, ref solved);
+            }
+            else if (node.Solvable == true)
+            {
+                LinkedList<AndOrTreeNode> solutionNodes = new LinkedList<AndOrTreeNode>();
+                solutionTree = TraceUp(node, solutionNodes, marked);
+
+                if (solutionNodes.Contains(root))
+                    solved = true;
+            }
+        }
+
+        public AndOrTree DepthFirstSearch(long maxDepth)
+        {
+            solutionTree = null;
+
+            // If this tree has only 1 node (the root).
+            // If the root is true, return the tree itself.
+            // Otherwise return null, meaning: no proper solution.
+            if (root.IsLeafNode)
+            {
+                solutionTree = new AndOrTree();
+
+                if (root.Solvable == true)
+                {
+                    solutionTree.root = this.root.DeepCopy();
+                    return solutionTree;
+                }
+                else
+                    return null;
+            }
+
+            // A boolean array that records whether a node is marked before.
+            bool[] marked = new bool[treeNodes.Length];
+
+            // According to DFS algorithm from Graph Theory, queue is unnecessary here.
+            //Queue<AndOrTreeNode> nodes = new Queue<AndOrTreeNode>();
+            //nodes.Enqueue(root);
+
+            bool solved = false;
+            DepthFirstSearch(maxDepth, 0, root, marked, ref solved);
+
+            return solutionTree;
+        }
+
+        public void DepthFirstSearch(long maxDepth, int currentDepth, AndOrTreeNode node, bool[] marked, ref bool solved)
+        {
+            // Stop searching if DFS has found a solution.
+            if (solved)
+                return;
             marked[node.Id] = true;
 
             if (currentDepth >= maxDepth)
@@ -119,15 +176,19 @@ namespace AlgorithmDesigns
 
             // If this is not a leaf node, keep searching.
             // Otherwise, if this is a leaf node and solvable, than try to trace back.
-            // Otherwise, this is a leaf node and unsolvable.
+            // Otherwise, this is a unsolvable leaf node, which means no need to trace back and return to the caller immediately.
             if (!node.IsLeafNode)
             {
                 foreach (AndOrTreeNode child in node.GetChildren())
-                    DepthFirstSearch(maxDepth, currentDepth + 1, child, marked);
+                    DepthFirstSearch(maxDepth, currentDepth + 1, child, marked, ref solved);
             }
             else if (node.Solvable == true)
             {
-                // How to return the trace back result?
+                LinkedList<AndOrTreeNode> solutionNodes = new LinkedList<AndOrTreeNode>();
+                solutionTree = TraceUp(node, solutionNodes, marked);
+
+                if (solutionNodes.Contains(root))
+                    solved = true;
             }
         }
 
@@ -148,18 +209,25 @@ namespace AlgorithmDesigns
             while (nodes.Count != 0)
             {
                 AndOrTreeNode node = nodes.Dequeue();
-                if (node.Solvable == true)
-                {
+                marked[node.Id] = true;
 
-                }
-                else
+                // Add all child nodes of this node if it is not a leaf node.
+                if (!node.IsLeafNode)
                 {
-                    foreach (AndOrTreeNode n in node.GetChildren())
-                        nodes.Enqueue(n);
+                    foreach (AndOrTreeNode child in node.GetChildren())
+                        nodes.Enqueue(child);
+                }
+                else if (node.Solvable == true)
+                {
+                    LinkedList<AndOrTreeNode> solutionNodes = new LinkedList<AndOrTreeNode>();
+                    solutionTree = TraceUp(node, solutionNodes, marked);
+
+                    if (solutionNodes.Contains(root))
+                        break;
                 }
             }
 
-            return null;
+            return solutionTree;
         }
 
         /// <summary>
@@ -176,6 +244,18 @@ namespace AlgorithmDesigns
             {
                 solutionNodes.AddLast(node);
                 return BuildSolutionTree(solutionNodes);
+            }
+
+            // This `if` statement might be unnecessary since the trace back procedure will be called only when DFS/BFS reaches a solvable leaf node.
+            if (node.IsLeafNode)
+            {
+                if (node.Solvable == true)
+                {
+                    solutionNodes.AddLast(node);
+                    return TraceUp(node.Parent, solutionNodes, marked);
+                }
+                else
+                    return null;
             }
 
             // Trace back to the parent node of this node if this is an or node since there is child node of this node is solvable.
@@ -272,7 +352,23 @@ namespace AlgorithmDesigns
 
         private AndOrTree BuildSolutionTree(LinkedList<AndOrTreeNode> solutionNodes)
         {
-            return null;
+            AndOrTree solutionTree = new AndOrTree();
+            solutionTree.root = this.root.DeepCopy();
+            solutionTree.treeNodes = new AndOrTreeNode[this.treeNodes.Length];
+            foreach (AndOrTreeNode node in solutionNodes)
+                solutionTree.treeNodes[node.Id] = node.DeepCopy();
+
+            // Fix links of solution tree.
+            foreach (AndOrTreeNode node in solutionNodes)
+            {
+                if (node.Parent != null)
+                {
+                    solutionTree.treeNodes[node.Id].Parent = solutionTree.treeNodes[node.Parent.Id];
+                    solutionTree.treeNodes[node.Parent.Id].AddNode(solutionTree.treeNodes[node.Id]);
+                }
+            }
+
+            return solutionTree;
         }
 
         public override string ToString()
@@ -281,19 +377,11 @@ namespace AlgorithmDesigns
 
             foreach (AndOrTreeNode node in treeNodes)
             {
-                string solvable;
-                if (node.Solvable == true)
-                    solvable = "True";
-                else if (node.Solvable == false)
-                    solvable = "False";
-                else
-                    solvable = "Unknown";
-                treeStructure.Append(node.Id + " (" + node.NodeType + "), " + solvable + ": ");
-
-                foreach (AndOrTreeNode child in node.GetChildren())
-                    treeStructure.Append(child.Id + " ");
-
-                treeStructure.Append(Environment.NewLine);
+                if (node != null)
+                {
+                    treeStructure.Append(node.ToString());
+                    treeStructure.Append(Environment.NewLine);
+                }
             }
 
             treeStructure.Append("Root: " + root.Id);

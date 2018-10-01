@@ -155,7 +155,17 @@ namespace AlgorithmDesigns
         public static void AndOrTreeTest()
         {
             AndOrTree tree = new AndOrTree("TestData/Tiny AndOrTree.txt");
+            Console.WriteLine("Original and or tree:");
             Console.WriteLine(tree);
+
+            Console.WriteLine("Solution tree found by DFS without height limit:");
+            Console.WriteLine(tree.DepthFirstSearch());
+
+            Console.WriteLine("Solution tree found by DFS with height limit = 100:");
+            Console.WriteLine(tree.DepthFirstSearch(100));
+
+            Console.WriteLine("Solution tree found by BFS:");
+            Console.WriteLine(tree.BreadthFirstSearch());
         }
     }
 }
