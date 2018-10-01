@@ -6,11 +6,20 @@ using System.Threading.Tasks;
 
 namespace AlgorithmDesigns
 {
+    /// <summary>
+    /// The <see cref="AndOrTreeNode" /> class represents a node in an and or tree.
+    /// </summary>
     public class AndOrTreeNode
     {
+        /// <summary>
+        /// The ID of this node.
+        /// </summary>
         public int Id { get; }
 
-        public bool? Solvable { get; set; }
+        /// <summary>
+        /// Gets a value indicating
+        /// </summary>
+        public bool? Solvable { get; }
 
         public AndOrTreeNodeType NodeType { get; }
 
