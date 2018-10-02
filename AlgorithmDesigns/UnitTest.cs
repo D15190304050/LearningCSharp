@@ -152,6 +152,9 @@ namespace AlgorithmDesigns
             }
         }
 
+        /// <summary>
+        /// Unit test method for DFS and BFS search of <see cref="AndOrTree" />.
+        /// </summary>
         public static void AndOrTreeTest()
         {
             AndOrTree tree = new AndOrTree("TestData/Tiny AndOrTree.txt");
