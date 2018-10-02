@@ -85,7 +85,7 @@ namespace AlgorithmDesigns
         ///     [ID] field accepts an integer.
         ///     [NodeType] field accepts "or" and "and" (case insensitive).
         ///     [Solvable] field accepts "true", "false" and "unknown" (case insensitive), where "unknown" indicates that the node is not a leaf node.
-        ///     [Children] field accepts a list of integers or just empty.
+        ///     [Children] field accepts a list of integers (separated by space) or just empty.
         ///     eg.
         ///     1 or true
         ///     4 and unknown 1 2
