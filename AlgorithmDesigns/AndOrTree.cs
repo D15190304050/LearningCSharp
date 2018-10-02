@@ -136,7 +136,7 @@ namespace AlgorithmDesigns
                 for (int j = 3; j < line.Length; j++)
                 {
                     int child = int.Parse(line[j]);
-                    if (child >= node.Id)
+                    if (treeNodes[child] == null)
                         throw new FormatException("Invalid data format of `parent` in file " + filePath + ", line " + i);
 
                     // Link this node and its parent.
