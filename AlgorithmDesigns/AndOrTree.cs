@@ -130,7 +130,7 @@ namespace AlgorithmDesigns
 
                 // Create this node.
                 AndOrTreeNode node = new AndOrTreeNode(int.Parse(line[0]), nodeType, solvable);
-                treeNodes[i] = node;
+                treeNodes[node.Id] = node;
 
                 // Add child nodes for this node.
                 for (int j = 3; j < line.Length; j++)
