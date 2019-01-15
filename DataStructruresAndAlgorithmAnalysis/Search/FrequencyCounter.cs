@@ -19,7 +19,7 @@ namespace PersonalDataStructuresAndAlgorithm.Search
             // Build symbol table and count frequencies.
             foreach (string word in words)
             {
-                // Igonre short keys.
+                // Ignore short keys.
                 if (word.Length < minLength)
                     continue;
 

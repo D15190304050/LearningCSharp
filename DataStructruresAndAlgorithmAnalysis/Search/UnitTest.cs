@@ -24,7 +24,7 @@ namespace PersonalDataStructuresAndAlgorithm.Search
             // Run the FrequencyCounter.MaxFrequency() test.
             Console.WriteLine("Run the FrequencyCounter.MaxFrequency() test.");
             string fileName = "tinyTale.txt";
-            string path = @"Q:\穆雨竹\Computer Science\C#\Source Codes\Data Structure and Algorithm Analysis\Test Data";
+            string path = @".\Test Data";
             string fullFileName = System.IO.Path.Combine(path, fileName);
             FrequencyCounter.MaxFrequency(fullFileName, 1, ht);
 
@@ -39,7 +39,7 @@ namespace PersonalDataStructuresAndAlgorithm.Search
             // Try to remove element from st.
 
             // Remove an KVP by key and list the rest content.
-            Console.WriteLine("\nList the content in the st after removing the element associted with key \"it\".");
+            Console.WriteLine("\nList the content in the st after removing the element associated with key \"it\".");
             ht.Remove("it");
             foreach (var kvp in ht.GetKeyValuePairs())
                 Console.WriteLine("The show time count of word \"{0}\" is {1}", kvp.Key, kvp.Value);

@@ -84,7 +84,7 @@ namespace PersonalDataStructuresAndAlgorithm.Search
         /// <summary>
         /// Determines whether the set is empty.
         /// </summary>
-        public bool isEmpty
+        public bool IsEmpty
         {
             get { return Count == 0; }
         }
@@ -229,7 +229,7 @@ namespace PersonalDataStructuresAndAlgorithm.Search
         /// <returns>An Enumerator that iterates through the set, by the ascending order.</returns>
         public IEnumerator<TKey> GetEnumerator()
         {
-            if (isEmpty)
+            if (IsEmpty)
                 return null;
 
             Queue<TKey> queue = new Queue<TKey>();

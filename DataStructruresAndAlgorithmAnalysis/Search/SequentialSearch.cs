@@ -66,7 +66,10 @@ namespace PersonalDataStructuresAndAlgorithm.Search
                 for (Node current = first; current != null; current = current.Next)
                 {
                     if (current.Key.Equals(key))
+                    {
                         current.Value = value;
+                        return;
+                    }
                 }
             }
         }
@@ -84,7 +87,7 @@ namespace PersonalDataStructuresAndAlgorithm.Search
                 }
             }
 
-            // Search miss: add new node, and refresh the node counter.
+            // Search miss: add new node, and update the node counter.
             first = new Node(key, value, first);
             size++;
         }
@@ -104,20 +107,21 @@ namespace PersonalDataStructuresAndAlgorithm.Search
 
         public bool Contains(KeyValuePair<TKey, TValue> item)
         {
-            foreach (var kvp in GetKeyValuePairs())
+            for (Node current = first; current != null; current = current.Next)
             {
-                if (kvp.Equals(item))
+                if (current.Key.Equals(item.Key) &&
+                    current.Value.Equals(item.Value))
                     return true;
             }
+
             return false;
         }
 
         public bool ContainsKey(TKey key)
         {
-            // This method can be easily implemented by Contains(), but access Key only will accelerate the precess.
-            foreach (TKey k in Keys())
+            for (Node current = first; current != null; current = current.Next)
             {
-                if (k.Equals(key))
+                if (current.Key.Equals(key))
                     return true;
             }
             return false;
@@ -186,7 +190,7 @@ namespace PersonalDataStructuresAndAlgorithm.Search
                 }
             }
 
-            // If the process reaches here, the symbol table doesn't contan the key-value pair.
+            // If the process reaches here, the symbol table doesn't contain the key-value pair.
         }
     }
 }
