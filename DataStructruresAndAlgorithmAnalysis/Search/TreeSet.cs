@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PersonalDataStructuresAndAlgorithm.Search
+namespace DataTools.Search
 {
     using BasicDataStructures;
 

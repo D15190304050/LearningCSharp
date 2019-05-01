@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 
-namespace ConcurrentProgrammingDemo
+namespace Concurrent
 {
     public static class CancelingThreadsCooperatively
     {

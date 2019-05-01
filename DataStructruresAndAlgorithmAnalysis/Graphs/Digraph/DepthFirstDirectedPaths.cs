@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PersonalDataStructuresAndAlgorithm.Graphs.DirectedGraph
+namespace DataTools.Graphs.DirectedGraph
 {
     using BasicDataStructures;
 

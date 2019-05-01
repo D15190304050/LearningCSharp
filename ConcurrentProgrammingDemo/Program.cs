@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using System.Threading;
 using System.Diagnostics;
 
-namespace ConcurrentProgrammingDemo
+namespace Concurrent
 {
     internal class Program
     {

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PersonalDataStructuresAndAlgorithm.String
+namespace DataTools.String
 {
     /// <summary>
     /// The StringSearchBase class finds the first occurace of a pattern string in a text string.

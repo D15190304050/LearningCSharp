@@ -14,7 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Reflection;
 
-namespace ConcurrentWpf
+namespace Concurrent
 {
     /// <summary>
     /// MainWindow.xaml 的交互逻辑

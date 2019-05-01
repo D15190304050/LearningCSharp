@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using PersonalDataStructuresAndAlgorithm.Graphs.UndirectedGraph;
-using PersonalDataStructuresAndAlgorithm.Graphs.DirectedGraph;
-using PersonalDataStructuresAndAlgorithm.Graphs.EdgeWeightedUndirectedGraph;
-using PersonalDataStructuresAndAlgorithm.Graphs.EdgeWeightedDirectedGraph;
-using PersonalDataStructuresAndAlgorithm.Graphs.FlowNetworks;
+using DataTools.Graphs.UndirectedGraph;
+using DataTools.Graphs.DirectedGraph;
+using DataTools.Graphs.EdgeWeightedUndirectedGraph;
+using DataTools.Graphs.EdgeWeightedDirectedGraph;
+using DataTools.Graphs.FlowNetworks;
 
-namespace PersonalDataStructuresAndAlgorithm.Graphs
+namespace DataTools.Graphs
 {
     using BasicDataStructures;
 

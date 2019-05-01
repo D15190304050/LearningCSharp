@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PersonalDataStructuresAndAlgorithm.Search
+namespace DataTools.Search
 {
     public abstract class BinarySearchTreeBase<TKey, TValue> : IOrderedSymbolTable<TKey, TValue> where TKey : IComparable<TKey>
     {

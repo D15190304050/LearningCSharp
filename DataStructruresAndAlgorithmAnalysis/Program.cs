@@ -4,10 +4,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using PersonalDataStructuresAndAlgorithm.Graphs.DirectedGraph;
+using DataTools.Graphs.DirectedGraph;
 using System.IO;
 
-namespace PersonalDataStructuresAndAlgorithm
+namespace DataTools
 {
     public class Program
     {

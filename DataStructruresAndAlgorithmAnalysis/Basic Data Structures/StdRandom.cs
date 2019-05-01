@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PersonalDataStructuresAndAlgorithm.BasicDataStructures
+namespace DataTools.BasicDataStructures
 {
     /// <summary>
     /// The StdRandom class provides static methods for generating random number for various descrete and coutinuous distributions,

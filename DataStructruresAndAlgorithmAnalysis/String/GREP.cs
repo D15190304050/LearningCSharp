@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PersonalDataStructuresAndAlgorithm.String
+namespace DataTools.String
 {
     /// <summary>
     /// The GREP (short for Globally search a Regular Expression and Print) provides a client for reading a sequence

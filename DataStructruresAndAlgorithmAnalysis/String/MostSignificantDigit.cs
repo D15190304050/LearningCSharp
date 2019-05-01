@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PersonalDataStructuresAndAlgorithm.String
+namespace DataTools.String
 {
     /// <summary>
     /// The MostSignificantDigit class provides static methods for sorting an array of extended ASCII strings or integers using most-significant digit radix sort.

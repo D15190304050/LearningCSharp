@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PersonalDataStructuresAndAlgorithm.Graphs.EdgeWeightedDirectedGraph
+namespace DataTools.Graphs.EdgeWeightedDirectedGraph
 {
     /// <summary>
     /// The Arbitrage class represents provides a client that finds an arbitrage oppotunity in a currency exchange table

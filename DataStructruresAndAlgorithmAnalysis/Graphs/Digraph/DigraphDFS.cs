@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PersonalDataStructuresAndAlgorithm.Graphs.DirectedGraph
+namespace DataTools.Graphs.DirectedGraph
 {
     /// <summary>
     /// The DigraphDFS class represents a data type for determing the vertices reachable from a given source vertex in a digraph.

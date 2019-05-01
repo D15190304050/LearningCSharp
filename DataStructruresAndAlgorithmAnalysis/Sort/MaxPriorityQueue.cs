@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PersonalDataStructuresAndAlgorithm.Sort
+namespace DataTools.Sort
 {
     /// <summary>
     /// The MaxPriorityQueue class represenets a priority queue of generic keys.

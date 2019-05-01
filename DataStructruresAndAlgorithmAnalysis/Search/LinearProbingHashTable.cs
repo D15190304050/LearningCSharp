@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PersonalDataStructuresAndAlgorithm.Search
+namespace DataTools.Search
 {
     public class LinearProbingHashTable<TKey, TValue> : ISymbolTable<TKey, TValue> where TKey : IComparable<TKey>
     {

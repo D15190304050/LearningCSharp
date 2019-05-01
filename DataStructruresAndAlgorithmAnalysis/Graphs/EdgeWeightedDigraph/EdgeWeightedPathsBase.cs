@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PersonalDataStructuresAndAlgorithm.Graphs.EdgeWeightedDirectedGraph
+namespace DataTools.Graphs.EdgeWeightedDirectedGraph
 {
     /// <summary>
     /// The EdgeWeightedPathsBase class represents a data type which is the base class for computing the shortest and the longest paths.

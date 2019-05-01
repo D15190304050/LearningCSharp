@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.ComponentModel;
 
-namespace ConcurrentWpf
+namespace Concurrent
 {
     /// <summary>
     /// WordCounter.xaml 的交互逻辑

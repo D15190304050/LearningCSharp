@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PersonalDataStructuresAndAlgorithm.String
+namespace DataTools.String
 {
     /// <summary>
     /// The LeastSignificantDigit class provides static methods for sorting an array of w character strings or 32-bit integers using Least-significant digit radix sort.

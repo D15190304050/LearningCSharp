@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PersonalDataStructuresAndAlgorithm.Graphs.EdgeWeightedDirectedGraph
+namespace DataTools.Graphs.EdgeWeightedDirectedGraph
 {
     /// <summary>
     /// The DijkstraAllPairsSP class represents a data type for solving the all pairs shortest paths problem in edge-weighted digraphs

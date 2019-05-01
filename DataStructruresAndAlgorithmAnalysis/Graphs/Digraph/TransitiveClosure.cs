@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PersonalDataStructuresAndAlgorithm.Graphs.DirectedGraph
+namespace DataTools.Graphs.DirectedGraph
 {
     /// <summary>
     /// The TransitiveClosure class represents a data type for computing the transitive closure of a digraph.

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PersonalDataStructuresAndAlgorithm.Graphs.EdgeWeightedUndirectedGraph
+namespace DataTools.Graphs.EdgeWeightedUndirectedGraph
 {
     /// <summary>
     /// The Edge class represents a weighted edge in an edge weighted graph.

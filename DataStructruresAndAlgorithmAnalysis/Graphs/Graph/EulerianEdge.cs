@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PersonalDataStructuresAndAlgorithm.Graphs.UndirectedGraph
+namespace DataTools.Graphs.UndirectedGraph
 {
     /// <summary>
     /// An un-directed edge, with a field to indicate whether the edge has been used.

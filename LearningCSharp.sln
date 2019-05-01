@@ -1,13 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.27130.2036
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.28803.352
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Startup", "Startup\Startup.csproj", "{E6C7CACF-3C5E-462A-B79A-7758A9B29BB6}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mathematics", "Mathematics\Mathematics.csproj", "{A876A2B3-1765-4B42-BBE0-DA7DE7AAC6B2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConcurrentProgrammingDemo", "ConcurrentProgrammingDemo\ConcurrentProgrammingDemo.csproj", "{3129250C-75EA-453B-87EC-9BFDD3F67C6E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConcurrentConsole", "ConcurrentProgrammingDemo\ConcurrentConsole.csproj", "{3129250C-75EA-453B-87EC-9BFDD3F67C6E}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AlgorithmDesigns", "AlgorithmDesigns\AlgorithmDesigns.csproj", "{C2053816-F81F-43B3-9E3F-3FD177945C78}"
 EndProject
@@ -20,8 +20,6 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WpfApp", "WpfApp\WpfApp.csproj", "{D494C440-A71A-497F-9434-E1A47302A939}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConcurrentWpf", "ConcurrentWpf\ConcurrentWpf.csproj", "{271E366B-825B-4F37-AFB3-6E37A4874754}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EightNumers", "EightNumers\EightNumers.csproj", "{C773428A-DC57-451A-B606-4522AF7C28D3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -65,10 +63,6 @@ Global
 		{271E366B-825B-4F37-AFB3-6E37A4874754}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{271E366B-825B-4F37-AFB3-6E37A4874754}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{271E366B-825B-4F37-AFB3-6E37A4874754}.Release|Any CPU.Build.0 = Release|Any CPU
-		{C773428A-DC57-451A-B606-4522AF7C28D3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C773428A-DC57-451A-B606-4522AF7C28D3}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C773428A-DC57-451A-B606-4522AF7C28D3}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C773428A-DC57-451A-B606-4522AF7C28D3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

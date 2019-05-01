@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PersonalDataStructuresAndAlgorithm.Sort
+namespace DataTools.Sort
 {
     /// <summary>
     /// The PriorityQueueBase class represenets the base calss of a priority queue of generic keys.

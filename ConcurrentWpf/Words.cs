@@ -7,7 +7,7 @@ using System.ComponentModel;
 using System.IO;
 using System.Text.RegularExpressions;
 
-namespace ConcurrentWpf
+namespace Concurrent
 {
     public class Words
     {

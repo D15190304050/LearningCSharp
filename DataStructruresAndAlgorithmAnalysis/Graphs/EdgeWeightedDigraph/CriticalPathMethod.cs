@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PersonalDataStructuresAndAlgorithm.Graphs.EdgeWeightedDirectedGraph
+namespace DataTools.Graphs.EdgeWeightedDirectedGraph
 {
     /// <summary>
     /// The CriticalPathMethod class provieds a client that solves the parallel precedence-constrained job scheduling problem via the critical path method.

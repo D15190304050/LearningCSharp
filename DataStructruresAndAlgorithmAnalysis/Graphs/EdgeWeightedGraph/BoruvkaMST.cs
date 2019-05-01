@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PersonalDataStructuresAndAlgorithm.Graphs.EdgeWeightedUndirectedGraph
+namespace DataTools.Graphs.EdgeWeightedUndirectedGraph
 {
     using BasicDataStructures;
 

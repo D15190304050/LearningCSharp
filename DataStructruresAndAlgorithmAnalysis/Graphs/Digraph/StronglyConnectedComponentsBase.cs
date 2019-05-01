@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PersonalDataStructuresAndAlgorithm.Graphs.DirectedGraph
+namespace DataTools.Graphs.DirectedGraph
 {
     /// <summary>
     /// The StronglyConnectedCompontesBase class represents a data type for determining strongly connected components in a digraph.

@@ -4,11 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PersonalDataStructuresAndAlgorithm.BasicDataStructures
+namespace DataTools.BasicDataStructures
 {
     /// <summary>
     /// The UnitTest class provides static methods to unit test classes provided in
-    /// PersonalDataStructuresAndAlgorithm.BasicDataStructures namespace.
+    /// DataTools.BasicDataStructures namespace.
     /// </summary>
     internal static class UnitTest
     {
