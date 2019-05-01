@@ -102,8 +102,6 @@ namespace AlgorithmDesigns
                 throw new ArgumentException("The number of production run must be a positive integer.");
             if (penaltyCost <= 0)
                 throw new ArgumentException("Penalty cost must be a positive number.");
-            if (costFunction == null)
-                throw new ArgumentNullException("Cost function must not be null.");
             if ((defectiveProbability < 0) || (defectiveProbability > 1))
                 throw new ArgumentException("The value of defective probability must in the range of [0,1].");
             if (maxLot <= 0)
@@ -111,7 +109,7 @@ namespace AlgorithmDesigns
 
             this.runCount = runCount;
             this.penaltyCost = penaltyCost;
-            this.costFunction = costFunction;
+            this.costFunction = costFunction ?? throw new ArgumentNullException("Cost function must not be null.");
             this.defectiveProbability = defectiveProbability;
             this.maxLot = maxLot;
         }
