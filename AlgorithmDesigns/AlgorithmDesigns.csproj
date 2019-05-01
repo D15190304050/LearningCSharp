@@ -60,9 +60,9 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\DataStructruresAndAlgorithmAnalysis\DataStructruresAndAlgorithmAnalysis.csproj">
+    <ProjectReference Include="..\DataStructruresAndAlgorithmAnalysis\DataTools.csproj">
       <Project>{44159154-e798-413b-92d6-9784ea434cd9}</Project>
-      <Name>DataStructruresAndAlgorithmAnalysis</Name>
+      <Name>DataTools</Name>
     </ProjectReference>
     <ProjectReference Include="..\Mathematics\Mathematics.csproj">
       <Project>{a876a2b3-1765-4b42-bbe0-da7de7aac6b2}</Project>
