@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DataTools.Graphs.DirectedGraph
 {
-    using BasicDataStructures;
+    using Collections;
 
     /// <summary>
     /// The Digraph class represents a directed graph of vertices name 0 through V-1.
@@ -24,10 +24,10 @@ namespace DataTools.Graphs.DirectedGraph
         public int E { get; private set; }
 
         // Adjacent[v] = adjacency list for vertex v.
-        private LinkedList<int>[] adjacent;
+        private readonly LinkedList<int>[] adjacent;
 
         // indegree[v] = indegree of vertex v.
-        private int[] indegree;
+        private readonly int[] indegree;
 
         /// <summary>
         /// Initialize an empty digraph with V vertices.

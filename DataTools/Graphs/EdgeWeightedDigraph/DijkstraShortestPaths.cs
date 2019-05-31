@@ -15,7 +15,7 @@ namespace DataTools.Graphs.EdgeWeightedDirectedGraph
     public class DijkstraShortestPaths : ShortestPathBase
     {
         // Priority queue of edges.
-        private IndexMinPQ<double> pq;
+        private readonly IndexMinPQ<double> pq;
 
         /// <summary>
         /// Computes a shortest paths tree from the vertex to every other vertex in the edge-weighted digraph G.
@@ -33,8 +33,10 @@ namespace DataTools.Graphs.EdgeWeightedDirectedGraph
             }
 
             // Relax vertices in order of distance from the source vertex.
-            pq = new IndexMinPQ<double>(G.V);
-            pq.Add(source, distanceTo[source]);
+            pq = new IndexMinPQ<double>(G.V)
+            {
+                { source, distanceTo[source] }
+            };
             while (!pq.IsEmpty)
             {
                 int v = pq.DeleteMin();

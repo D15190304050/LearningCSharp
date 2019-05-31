@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DataTools.String
 {
-    using BasicDataStructures;
+    using Collections;
 
     /// <summary>
     /// The TrieSymbolTable class represents a symbol table of key-value pairs, with string keys and generic values.

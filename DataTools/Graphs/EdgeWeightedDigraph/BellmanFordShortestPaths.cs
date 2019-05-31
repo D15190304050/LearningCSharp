@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DataTools.Graphs.EdgeWeightedDirectedGraph
 {
-    using BasicDataStructures;
+    using Collections;
 
     /// <summary>
     /// The BellmanFordShortestPaths class represents a data type for solving the single-source shortest paths problem in edge-weighted digraphs with no negative cycles.

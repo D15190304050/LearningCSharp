@@ -11,7 +11,7 @@ using DataTools.Graphs.FlowNetworks;
 
 namespace DataTools.Graphs
 {
-    using BasicDataStructures;
+    using Collections;
 
     /// <summary>
     /// A static class used to make unit test for graph data structures and algorithm. All files will be packaged somewhere.

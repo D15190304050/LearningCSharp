@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DataTools.Graphs.DirectedGraph
 {
-    using BasicDataStructures;
+    using Collections;
 
     /// <summary>
     /// The DirectedCycle class represests a data type for determing whether a digraph has a directed cycle.

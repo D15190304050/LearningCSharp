@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DataTools.Graphs.EdgeWeightedDirectedGraph
 {
-    using BasicDataStructures;
+    using Collections;
 
     /// <summary>
     /// The EdgeWeightedDigraph class represents an edge-weighted digraph of vertices named 0 through V-1,

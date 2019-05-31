@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DataTools.Graphs.FlowNetworks
 {
-    using BasicDataStructures;
+    using Collections;
 
     /// <summary>
     /// The FlowNetwork class represents a capacitated network with vertices named 0 through V-1, where each directed edge is of type FlowEdge.

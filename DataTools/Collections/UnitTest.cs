@@ -4,11 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DataTools.BasicDataStructures
+namespace DataTools.Collections
 {
     /// <summary>
     /// The UnitTest class provides static methods to unit test classes provided in
-    /// DataTools.BasicDataStructures namespace.
+    /// DataTools.Collections namespace.
     /// </summary>
     internal static class UnitTest
     {
@@ -111,7 +111,7 @@ namespace DataTools.BasicDataStructures
         public static void StackUnitTest()
         {
             // Create and initialize the stack.
-            BasicDataStructures.Stack<int> intStack = new Stack<int>();
+            Collections.Stack<int> intStack = new Stack<int>();
             for (int i = 0; i < 5; i++)
                 intStack.Push(i);
             /* Current content: [4, 3, 2, 1, 0] */

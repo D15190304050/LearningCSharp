@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace DataTools
 {
-    namespace BasicDataStructures
+    namespace Collections
     {
         /// <summary>
         /// The LinkedList class represents a doubly linked list.
@@ -155,7 +155,7 @@ namespace DataTools
             public T RemoveFirst()
             {
                 if (Size == 0)
-                    return default(T);
+                    return default;
 
                 Node tempFirst = head;
                 head = head.Next;
@@ -173,7 +173,7 @@ namespace DataTools
             public T RemoveLast()
             {
                 if (Size == 0)
-                    return default(T);
+                    return default;
 
                 Node tempLast = end;
                 end = tempLast.Prev;

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DataTools.Search
 {
-    using BasicDataStructures;
+    using Collections;
 
     /// <summary>
     /// This class provide a UnitTest for the data structures and algorithm about search.

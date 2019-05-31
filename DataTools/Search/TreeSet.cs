@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace DataTools.Search
 {
-    using BasicDataStructures;
+    using Collections;
 
     /// <summary>
     /// The Set class represents an ordered set of comparable keys. The order is tree order.

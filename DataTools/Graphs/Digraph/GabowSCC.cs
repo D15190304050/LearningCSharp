@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DataTools.Graphs.DirectedGraph
 {
-    using BasicDataStructures;
+    using Collections;
 
     /// <summary>
     /// The GabowSCC class represents a data type for determing SCCs in a digraph.

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DataTools.Graphs.EdgeWeightedUndirectedGraph
 {
-    using BasicDataStructures;
+    using Collections;
     using Sort;
 
     /// <summary>

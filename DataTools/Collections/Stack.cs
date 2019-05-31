@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace DataTools
 {
-    namespace BasicDataStructures
+    namespace Collections
     {
         /// <summary>
         /// The Stack class represents a last-in, first out collection of generic objects.

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DataTools.Graphs.EdgeWeightedUndirectedGraph
 {
-    using BasicDataStructures;
+    using Collections;
 
     /// <summary>
     /// The EdgeWeightedGraph represents a edge-weighted graph of vertices named 0 through V-1,

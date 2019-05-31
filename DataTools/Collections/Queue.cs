@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace DataTools
 {
-    namespace BasicDataStructures
+    namespace Collections
     {
         /// <summary>
         /// The Queue class represents a first-in, first-out collection of generic objects.

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DataTools.Sort
 {
-    using BasicDataStructures;
+    using Collections;
 
     internal static class UnitTest
     {

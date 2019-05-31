@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DataTools.Graphs.DirectedGraph
 {
-    using BasicDataStructures;
+    using Collections;
 
     public class DepthFirstDirectedPaths
     {

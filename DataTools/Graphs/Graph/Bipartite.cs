@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DataTools.Graphs.UndirectedGraph
 {
-    using BasicDataStructures;
+    using Collections;
 
     /// <summary>
     /// The Bipartite class represent a data type for determing whether an un-directed graph is bipartite or whether it has an odd-length cycle.

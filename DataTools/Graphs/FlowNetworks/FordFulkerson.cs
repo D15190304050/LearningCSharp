@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DataTools.Graphs.FlowNetworks
 {
-    using BasicDataStructures;
+    using Collections;
 
     /// <summary>
     /// The FordFulkerson class represents a data type for computing a max-flow in a flow network.

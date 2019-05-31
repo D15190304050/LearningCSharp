@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DataTools.String
 {
-    using BasicDataStructures;
+    using Collections;
 
     /// <summary>
     /// The UnitTest class provides unit test methods for classes in DataTools.String name space.

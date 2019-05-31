@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DataTools
 {
-    namespace BasicDataStructures
+    namespace Collections
     {
         /// <summary>
         /// The UnionFinds class represents a union-find data type (also known as the disjoint set data type).

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DataTools.Graphs.EdgeWeightedDirectedGraph
 {
-    using BasicDataStructures;
+    using Collections;
     using DirectedGraph;
 
     /// <summary>

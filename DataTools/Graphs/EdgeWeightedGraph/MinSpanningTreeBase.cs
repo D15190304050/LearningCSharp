@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DataTools.Graphs.EdgeWeightedUndirectedGraph
 {
-    using BasicDataStructures;
+    using Collections;
 
     /// <summary>
     /// The MinSpanningTreeBase class represents a data type for computing a mininum spanning tree in an edge-weighted graph.

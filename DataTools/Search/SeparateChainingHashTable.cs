@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DataTools.Search
 {
-    using BasicDataStructures;
+    using Collections;
 
     // Untested.
     public class SeparateChainingHashTable<TKey, TValue> : ISymbolTable<TKey, TValue> where TKey : IComparable<TKey>

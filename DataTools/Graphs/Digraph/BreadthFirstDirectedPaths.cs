@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DataTools.Graphs.DirectedGraph
 {
-    using BasicDataStructures;
+    using Collections;
 
     /// <summary>
     /// The BreadthFirstDirectedPaths class represents a data type for finding shortest paths (number of edges) from a source vertex to every other vertices in the digraph.

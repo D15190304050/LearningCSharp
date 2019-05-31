@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DataTools.String
 {
-    using BasicDataStructures;
+    using Collections;
 
     /// <summary>
     /// The Quick3String class provides static methods for sorting an array of strings using 3-way radix quick sort.

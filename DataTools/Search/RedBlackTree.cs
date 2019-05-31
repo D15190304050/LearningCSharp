@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DataTools.Search
 {
-    using BasicDataStructures;
+    using Collections;
 
     class RedBlackTree<TKey, TValue> : BinarySearchTreeBase<TKey, TValue> where TKey : IComparable<TKey>
     {

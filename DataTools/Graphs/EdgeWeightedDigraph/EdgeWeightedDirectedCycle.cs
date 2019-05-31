@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DataTools.Graphs.EdgeWeightedDirectedGraph
 {
-    using BasicDataStructures;
+    using Collections;
 
     /// <summary>
     /// The EdgeWeightedDirectedCycle class represents a data type for determining whether an edge-weighted digraph has a directed cycle.

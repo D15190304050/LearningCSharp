@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace DataTools.String
 {
     using System.Collections;
-    using BasicDataStructures;
+    using Collections;
 
     /// <summary>
     /// The TrieSet class represents an order set of strings over the extended ASCII alphabel.

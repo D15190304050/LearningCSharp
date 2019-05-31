@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DataTools.Graphs.UndirectedGraph
 {
-    using BasicDataStructures;
+    using Collections;
 
     public class DepthFirstPaths : GraphPathBase
     {

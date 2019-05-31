@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DataTools.String
 {
-    using BasicDataStructures;
+    using Collections;
     using Graphs.DirectedGraph;
 
     /// <summary>
