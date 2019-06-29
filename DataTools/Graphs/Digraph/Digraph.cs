@@ -165,7 +165,6 @@ namespace DataTools.Graphs.DirectedGraph
         /// <summary>
         /// Returns the reversion of this digraph.
         /// </summary>
-        /// <param name="G">The digraph.</param>
         /// <returns>The reversion of this digraph.</returns>
         public Digraph Reverse()
         {
