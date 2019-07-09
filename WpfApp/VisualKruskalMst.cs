@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using DataTools.BasicDataStructures;
+using DataTools.Collections;
 using DataTools.Sort;
 
 namespace WpfApp
