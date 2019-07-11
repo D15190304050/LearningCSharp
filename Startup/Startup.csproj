@@ -51,6 +51,7 @@
     <Compile Include="QuadraticEquation.cs" />
     <Compile Include="SmallFunctions.cs" />
     <Compile Include="SqlServerConnectionTest.cs" />
+    <Compile Include="TaskDemos.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
