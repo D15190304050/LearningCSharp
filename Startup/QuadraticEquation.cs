@@ -12,8 +12,7 @@ namespace Startup
         public double B { get; private set; }
         public double C { get; private set; }
 
-        public string Root1 { get; private set; }
-        public string Root2 { get; private set; }
+        public string Root { get; private set; }
 
         public bool IsReal { get; private set; }
 
@@ -38,23 +37,20 @@ namespace Startup
                     {
                         this.IsSolvable = true;
                         this.IsReal = true;
-                        this.Root1 = "any real number.";
-                        this.Root2 = this.Root1;
+                        this.Root = "any real number.";
                     }
                     else
                     {
                         this.IsSolvable = false;
                         this.IsReal = true;
-                        this.Root1 = "has no solution";
-                        this.Root2 = this.Root1;
+                        this.Root = "no solution";
                     }
                 }
                 else
                 {
                     this.IsSolvable = true;
                     this.IsReal = true;
-                    this.Root1 = -this.C / this.B + "";
-                    this.Root2 = this.Root1;
+                    this.Root = -this.C / this.B + "";
                 }
             }
             else
@@ -69,17 +65,26 @@ namespace Startup
                     this.IsReal = false;
                     discriminant = -discriminant;
 
-                    this.Root1 = -this.B / denominator + " + " + discriminant / denominator + "i";
-                    this.Root2 = -this.B / denominator + " - " + discriminant / denominator + "i";
+                    string root1 = -this.B / denominator + " + " + discriminant / denominator + "i";
+                    string root2 = -this.B / denominator + " - " + discriminant / denominator + "i";
+
+                    this.Root = root1 + ", " + root2;
                 }
                 else
                 {
                     this.IsReal = true;
 
-                    this.Root1 = (-this.B + discriminant) / denominator + "";
-                    this.Root2 = (-this.B - discriminant) / denominator + "";
+                    string root1 = (-this.B + discriminant) / denominator + "";
+                    string root2 = (-this.B - discriminant) / denominator + "";
+
+                    this.Root = root1 + ", " + root2;
                 }
             }
+        }
+
+        public override string ToString()
+        {
+            return this.A + " * x^2 + " + this.B + " * x + " + this.C + " = 0";
         }
     }
 }
