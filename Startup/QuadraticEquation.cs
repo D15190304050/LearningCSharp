@@ -8,6 +8,9 @@ namespace Startup
 {
     public class QuadraticEquation
     {
+        public const string AnyRealNumber = "any real number";
+        public const string NoSolution = "no solution";
+
         public double A { get; private set; }
         public double B { get; private set; }
         public double C { get; private set; }
@@ -37,13 +40,13 @@ namespace Startup
                     {
                         this.IsSolvable = true;
                         this.IsReal = true;
-                        this.Root = "any real number.";
+                        this.Root = AnyRealNumber;
                     }
                     else
                     {
                         this.IsSolvable = false;
                         this.IsReal = true;
-                        this.Root = "no solution";
+                        this.Root = NoSolution;
                     }
                 }
                 else

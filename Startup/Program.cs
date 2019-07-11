@@ -38,10 +38,9 @@ namespace Startup
             parameters[5, 1] = 3;
             parameters[5, 2] = 2;
 
-            QuadraticEquation qe;
             for (int i = 0; i < parameters.GetLength(0); i++)
             {
-                qe = new QuadraticEquation(parameters[i, 0], parameters[i, 1], parameters[i, 2]);
+                QuadraticEquation qe = new QuadraticEquation(parameters[i, 0], parameters[i, 1], parameters[i, 2]);
                 if (!qe.IsSolvable)
                     Console.WriteLine("({0}) * x^2 + ({1}) * x + ({2}) = 0 has no solution\n", parameters[i, 0], parameters[i, 1], parameters[i, 2]);
                 else
