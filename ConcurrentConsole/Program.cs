@@ -17,9 +17,11 @@ namespace Concurrent
             //CreateThreadsAndPassData.RetriveDataFromThreads();
             //ConcurrentQueueDemo.Demo();
 
-            TaskDemo.CreateTasks();
+            //TaskDemo.CreateTasks();
+            //TaskDemo.WaitForTask();
+            //TaskDemo.ConditionallyWait();
+            //TaskDemo.WaitAny();
 
-            //Task.Wait
 
             // Keep the console window open in debug mode.
             Console.WriteLine("Press any key to continue...");
