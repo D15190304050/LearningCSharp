@@ -47,6 +47,7 @@
     <Compile Include="AndOrTreeNodeType.cs" />
     <Compile Include="CostFunction.cs" />
     <Compile Include="KnapsackProblem.cs" />
+    <Compile Include="LongestIncreasingSequence.cs" />
     <Compile Include="NumberOfInversions.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
